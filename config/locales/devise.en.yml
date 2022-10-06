@@ -46,16 +46,16 @@ en:
       updated: "Your account has been updated successfully."
       updated_but_not_signed_in: "Your account has been updated successfully, but since your password was changed, you need to sign in again."
     sessions:
-      signed_in: "Signed in successfully."
-      signed_out: "Signed out successfully."
-      already_signed_out: "Signed out successfully."
+      signed_in: "サインインしました"
+      signed_out: "サインアウトしました"
+      already_signed_out: "正常にサインアウトしました"
     unlocks:
-      send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
-      send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
-      unlocked: "Your account has been unlocked successfully. Please sign in to continue."
+      send_instructions: "数分後にアカウントのロックを解除する方法が記載されたメールが届きます"
+      send_paranoid_instructions: "アカウントが存在する場合は、数分後にロックを解除する方法が記載されたメールが届きます"
+      unlocked: "アカウントのロックが解除されました。続行するにはサインインしてください"
   errors:
     messages:
-      already_confirmed: "was already confirmed, please try signing in"
+      already_confirmed: "すでに確認されています。サインインしてみてください"
       confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
       expired: "has expired, please request a new one"
       not_found: "not found"

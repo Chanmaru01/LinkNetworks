@@ -1,8 +1,8 @@
-<h2>マイプロフィール</h2>
-
-<h3>ユーザー名</h3>
-<%= @user.user_name %>
-<h3>メールアドレス</h3>
-<%= @user.email %>
-<h3>自己紹介</h3>
-<%= @user.pr%>
+<h2>プロフィール</h2>
+<h5>ユーザー名</h5>
+<h3><%= @user.user_name %></h3>
+<h5>メールアドレス</h5>
+<h3><%= @user.email %></h3>
+<h5>自己紹介</h5>
+<h3><%= @user.pr%></h3>
+<h5><%= link_to 'プロフィール編集', edit_user_registration_path %></h5>
