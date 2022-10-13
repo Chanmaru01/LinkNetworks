@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :validatable
 
+        has_many :tweets
+        
         validates :user_name, presence: true
         validates :pr, length: { maximum: 200 }
 end

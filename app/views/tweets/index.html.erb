@@ -1,4 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h5>投稿一覧</h5>
 <%= render @tweets %>
-<%= link_to '新規投稿', new_tweet_path %>
+<% if user_signed_in? %>
+<p><%= link_to '新規投稿', new_tweet_path %></p>
+<% end %>
