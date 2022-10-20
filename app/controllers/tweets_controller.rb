@@ -1,16 +1,19 @@
 class TweetsController < ApplicationController
 
+  before_action :authenticate_user!, only: [:show, :create]
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
   before_action :login_check, only: [:new, :edit, :update, :destroy]
 
   # GET /tweets
   def index
     @tweets = Tweet.all
+    @tweet =Tweet.new
   end
 
   # GET /tweets/1
   def show
     @tweet = Tweet.includes(:user).find(params[:id])
+    @like = Like.new
   end
 
   # GET /tweets/new
@@ -26,7 +29,8 @@ class TweetsController < ApplicationController
   def create
     @tweet = current_user.tweets.build(tweet_params)
     if @tweet.save
-      redirect_to @tweet, notice: '新規投稿が作成されました'
+      redirect_to tweets_path
+
     else
       render :new
     end
@@ -35,7 +39,7 @@ class TweetsController < ApplicationController
   # PATCH/PUT /tweets/1
   def update
     if @tweet.update(tweet_params)
-      redirect_to @tweet, notice: '更新されました'
+      redirect_to tweets_path
     else
       render :edit
     end
@@ -53,15 +57,16 @@ class TweetsController < ApplicationController
       unless user_signed_in?
         flash[:alert] = "ログインしてください"
         redirect_to root_path
+      end
     end
-
+    
     def set_tweet
-      @tweet = Tweet.find(params[:id])
+      @tweet = current_user.tweets.find_by(id: params[:id])
+      redirect_to(tweets_path, alert: "ERROR!!") if @tweet.blank?
     end
 
     # Only allow a trusted parameter "white list" through.
     def tweet_params
       params.require(:tweet).permit(:content, :user_id)
     end
-end
 end

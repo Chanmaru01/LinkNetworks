@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-
-  resources :tweets
   devise_for :users, controllers: {registrations: "users/registrations"}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  get 'tweets/index'
-  get 'tweets/show'
-  get 'tweets/new'
-  post 'tweets' => 'tweets#create'
+
+  resources :users, only: [:index, :show]
+  resources :tweets do
+    resources :likes, only: [:create, :destroy]
+  end
+  
   
   get "users/show" => "users#show"
 

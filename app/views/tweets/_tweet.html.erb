@@ -1,8 +1,20 @@
 <div class="card mb-3">
     <div class="card-body">
-        <p class="card-text"><%= tweet.content %></p>
-        <p class="card-text"><%= tweet.user.user_name %></p>
-        <%= link_to '編集', edit_tweet_path(tweet), class: "btn btn-outline-primary" %>
-        <%= link_to '削除', tweet, method: :delete, class: "btn btn-outline-danger" %>
+        <p class="card-text"><a href="/tweets/<%= tweet.id %>"><%= tweet.content %></p>
+        <p class="card-text"><a href="/users/<%= tweet.user.id %>"><%= tweet.user.user_name %></p>
+        <%# 編集、削除ボタンの制御 %>
+            <% if user_signed_in? && tweet.user == current_user %>
+                <%= link_to '編集', edit_tweet_path(tweet), class: "btn btn-outline-primary" %>
+                <%= link_to '削除', tweet, method: :delete, class: "btn btn-outline-warning" %>
+            <% end %>
+            <% if user_signed_in? %>
+                <% if current_user.likes.find_by(tweet_id: @tweet.id) %>
+                    <div class="btn btn-outline-danger"><%= link_to "いいね解除", tweet_like_path(tweet), method: :delete %>
+                    <%= tweet.likes.count %></div>
+                <% else %>
+                    <div class="btn btn-outline-danger"><%= link_to "いいね", tweet_likes_path(tweet), method: :tweet %>
+                    <%= tweet.likes.count %></div>
+                <% end %>  
+            <% end %>
     </div>
 </div>

@@ -1,8 +1,16 @@
-<h2>プロフィール</h2>
+<h5>プロフィール</h5>
 <h5>ユーザー名</h5>
-<h3><%= @user.user_name %></h3>
+<h5><%= @user.user_name %></h5>
 <h5>メールアドレス</h5>
-<h3><%= @user.email %></h3>
+<h6><%= @user.email %></h6>
 <h5>自己紹介</h5>
 <h3><%= @user.pr%></h3>
 <h5><%= link_to 'プロフィール編集', edit_user_registration_path %></h5>
+
+<h3>いいねしている投稿</h3>
+<% @user.liked_tweets.each do |tweet| %>
+    <%= tweet.content %>
+    <%= tweet.user.user_name %>
+<% end %>
+<%= link_to "ユーザー一覧へ", users_path %>
+<%= link_to "トップ戻る", tweets_path %>
