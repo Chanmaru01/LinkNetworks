@@ -9,15 +9,13 @@
             <% end %>
             
             <% if user_signed_in? %>
-                <% if current_user.likes.find_by(tweet_id: @tweet.id) %>
-                <%# 訂正コード いいね解除の1文 %>
-                    <div class="btn btn-outline-danger"><%= link_to "いいね解除", tweet_like_path(tweet), method: :delete %>
-                    </div>
-
-                <% else %>
-                    <div class="btn btn-outline-danger"><%= link_to "いいね", tweet_likes_path(tweet), method: :tweet %>
-                    <%= tweet.likes.count %></div>
-                <% end %>  
+                <% if current_user.already_liked?(tweet) %>
+                            <%= link_to 'いいね解除', tweet_like_path(@tweet), method: :delete %>
+                            <%= tweet.likes.count %>
+                        <% else %>
+                            <%= link_to 'いいね', tweet_likes_path(id: tweet.id, tweet_id: tweet.id) %>
+                            <%= tweet.likes.count %></div>
+                        <% end %>    
             <% end %>
             
     </div>
