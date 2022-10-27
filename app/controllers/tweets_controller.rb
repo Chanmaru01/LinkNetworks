@@ -7,7 +7,7 @@ class TweetsController < ApplicationController
   # GET /tweets
   def index
     @tweets = Tweet.all
-    @tweet =Tweet.new
+    @tweet = Tweet.new
   end
 
   # GET /tweets/1

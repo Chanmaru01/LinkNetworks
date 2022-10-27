@@ -1,12 +1,33 @@
-<p><id"notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
 <h5>投稿一覧</h5>
     <% if user_signed_in? %>
         <%= link_to '新規投稿', new_tweet_path %>
     <% end %>
-    <div class="scroll">
-        <%= render @tweets %>
-    </div>
+<div class="scroll">
 
-
-
-
+    <% @tweets.each do |tweet| %>
+        <div class="card mb-3">
+            <div class="card-body">
+                <p class="card-text"><a href="/tweets/<%= tweet.id %>"><%= tweet.content %></p>
+                <p class="card-text"><a href="/users/<%= tweet.user.id %>"><%= tweet.user.user_name %></p>
+                <%# 編集、削除ボタンの制御 %>
+                    <% if user_signed_in? && tweet.user == current_user %>
+                        <%= link_to '編集', edit_tweet_path(tweet), class: "btn btn-outline-primary" %>
+                        <%= link_to '削除', tweet, method: :delete, class: "btn btn-outline-warning" %>
+                    <% end %>
+                    
+                    <% if user_signed_in? %>
+                        <% if current_user.already_liked?(tweet) %>
+                        <%# 訂正コード いいね解除の1文 %>
+                            <%= button_to 'いいねを取り消す', tweet_like_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
+                            <%= tweet.likes.count %>
+                        <% else %>
+                            <%= button_to 'いいね', tweet_likes_path(id: tweet.id, tweet_id: tweet.id) %>
+                            <%= tweet.likes.count %></div>
+                        <% end %>  
+                    <% end %>
+            
+            </div>
+        </div>
+    <% end %>
+</div>
