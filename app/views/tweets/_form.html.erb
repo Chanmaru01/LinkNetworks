@@ -9,11 +9,17 @@
       </ul>
     </div>
   <% end %>
+  <%# 画像アップロード %>
   <div class="field form-group">
-    <%= form.label :content %>
+    <%= form.label "画像アップロード" %>
+    <%= form.file_field :image %>
+  </div>
+<%# 投稿内容 %>
+  <div class="field form-group">
+    <%= form.label "投稿内容" %>
     <%= form.text_field :content, id: :tweet_content, class:"form-control" %>
   </div>
-  
+
   <div class="actions">
     <%= form.submit class: "btn btn-primary" %>
   </div>

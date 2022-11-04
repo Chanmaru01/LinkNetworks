@@ -24,6 +24,6 @@ div.actions {
     input[type="submit"] {
         @extend .my-2 !optional;
         @extend .btn !optional;
-        @extend .btn-primary !optional;
+        @extend .btn-success !optional;
     }
 }

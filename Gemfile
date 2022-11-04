@@ -59,3 +59,5 @@ gem 'devise', '~> 4.2'
 # Bootstrap4 and jQuery
   gem 'bootstrap', '~> 4.3.1'
   gem 'jquery-rails'
+# 画像の追加
+  gem 'carrierwave'
