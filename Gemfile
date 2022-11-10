@@ -61,3 +61,5 @@ gem 'devise', '~> 4.2'
   gem 'jquery-rails'
 # 画像の追加
   gem 'carrierwave'
+  # 検索
+  gem 'ransack'

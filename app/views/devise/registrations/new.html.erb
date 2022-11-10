@@ -2,13 +2,19 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+  
+<%# サインアップ時に画像を入力できるようにフォームを追加 %>
+  <div class="field">
+    <%= f.label "画像アップロード" %><br />
+    <%= f.file_field :image, autofocus: true %>
+  </div>
 
     <!--サインアップ時に名前を入力できるようにフォームを追加-->
   <div class="field">
     <%= f.label :ユーザー名 %><br />
     <%= f.text_field :user_name, autofocus: true %>
   </div>
-
+<!--サインアップ時にメールアドレスを入力できるようにフォームを追加-->
   <div class="field">
     <%= f.label :メールアドレス %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>

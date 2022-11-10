@@ -3,6 +3,12 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
+<%# アカウント編集時に画像を入力できるようにフォームを追加 %>
+  <div class="field">
+    <%= f.label "画像アップロード" %><br />
+    <%= f.file_field :image, autofocus: true %>
+  </div>
+
   <!--アカウント編集時に名前を入力できるようにフォームを追加-->
   <div class="field">
     <%= f.label :ユーザー名 %><br />

@@ -3,6 +3,7 @@ class TweetsController < ApplicationController
   before_action :authenticate_user!, only: [:show, :create]
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
   before_action :login_check, only: [:new, :edit, :update, :destroy]
+  before_action :set_q, only: [:index, :search]
 
   # GET /tweets
   def index
@@ -51,6 +52,10 @@ class TweetsController < ApplicationController
     redirect_to tweets_url, notice: '投稿が削除されました'
   end
 
+  def search
+    @results = @q.result
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def login_check
@@ -63,6 +68,10 @@ class TweetsController < ApplicationController
     def set_tweet
       @tweet = current_user.tweets.find_by(id: params[:id])
       redirect_to(tweets_path, alert: "ERROR!!") if @tweet.blank?
+    end
+    # ransackメソッド検索するメソッド
+    def set_q
+      @q = Tweet.ransack(params[:q])
     end
 
     # Only allow a trusted parameter "white list" through.

@@ -4,7 +4,7 @@
         <p class="card-text"><a href="/users/<%= tweet.user.id %>"><%= tweet.user.user_name %></p>
 
                     <% if tweet.image? %>
-                        <%= image_tag tweet.image.url %>
+                        <%= image_tag tweet.image.url, %>
                     <% end %>
 
         <%# 編集、削除ボタンの制御 %>
@@ -16,12 +16,12 @@
             <% if user_signed_in? %>
                             <% if current_user.already_liked?(tweet) %>
                             
-                                <%= link_to 'いいね解除', tweet_like_path(@tweet), method: :delete %>
+                                <%= button_to 'いいね解除', tweet_like_path(@tweet), method: :delete %>
                                 <%= tweet.likes.count %>
                                 
                             <% else %>
                             
-                                <%= link_to 'いいね', tweet_likes_path(id: tweet.id, tweet_id: tweet.id) %>
+                                <%= button_to 'いいね', tweet_likes_path(id: tweet.id, tweet_id: tweet.id) %>
                                 <%= tweet.likes.count %>
                             
                             <% end %>    

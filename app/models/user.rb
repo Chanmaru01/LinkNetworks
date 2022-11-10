@@ -5,6 +5,8 @@ class User < ApplicationRecord
             :recoverable, :rememberable, :validatable
         validates :user_name, presence: true
         validates :pr, length: { maximum: 200 }
+      # image の追加
+        mount_uploader :image, ImageUploader
 
           has_many :tweets, dependent: :destroy
           has_many :likes, dependent: :destroy
