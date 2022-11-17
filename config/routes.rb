@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       end
       
     resources :likes, only: [:create, :destroy]
+    resources :favorites, only: [:create, :destroy]
   end
 
   get "users/show" => "users#show"

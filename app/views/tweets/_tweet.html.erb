@@ -4,7 +4,7 @@
         <p class="card-text"><a href="/users/<%= tweet.user.id %>"><%= tweet.user.user_name %></p>
 
                     <% if tweet.image? %>
-                        <%= image_tag tweet.image.url, %>
+                        <%= image_tag tweet.image.url %>
                     <% end %>
 
         <%# 編集、削除ボタンの制御 %>
@@ -14,17 +14,22 @@
             <% end %>
             
             <% if user_signed_in? %>
-                            <% if current_user.already_liked?(tweet) %>
-                            
-                                <%= button_to 'いいね解除', tweet_like_path(@tweet), method: :delete %>
-                                <%= tweet.likes.count %>
-                                
-                            <% else %>
-                            
-                                <%= button_to 'いいね', tweet_likes_path(id: tweet.id, tweet_id: tweet.id) %>
-                                <%= tweet.likes.count %>
-                            
-                            <% end %>    
+            <%# いいね機能のボタン %>
+                <% if current_user.already_liked?(tweet) %>
+                    <%= button_to 'いいね解除', tweet_like_path(@tweet), method: :delete %>
+                    <%= tweet.likes.count %>                
+                <% else %>
+                    <%= button_to 'いいね', tweet_likes_path(id: tweet.id, tweet_id: tweet.id) %>
+                    <%= tweet.likes.count %>        
+                <% end %>
+            <%# お気に入り機能のボタン %>
+                <% if current_user.already_favorited?(tweet) %>
+                    <%= button_to 'お気に入り解除', tweet_favorite_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
+                    <%= tweet.favorites.count %>                
+                <% else %>
+                    <%= button_to 'お気に入り', tweet_favorites_path(id: tweet.id, tweet_id: tweet.id) %>
+                    <%= tweet.favorites.count %>        
+                <% end %>
             <% end %>
             
     </div>
