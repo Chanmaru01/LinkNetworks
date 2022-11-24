@@ -5,17 +5,19 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show] do
       
   end
-
+  
   resources :tweets do
       collection do
         get 'search'
+        get 'favorite'
       end
       
     resources :likes, only: [:create, :destroy]
     resources :favorites, only: [:create, :destroy]
   end
 
+  
   get "users/show" => "users#show"
-
+  
   root to: "tweets#index"
 end

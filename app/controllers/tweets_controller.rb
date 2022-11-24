@@ -1,8 +1,8 @@
 class TweetsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:show, :create]
+  before_action :authenticate_user!, only: [:show, :create, :favorite]
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
-  before_action :login_check, only: [:new, :edit, :update, :destroy]
+  before_action :login_check, only: [:new, :edit, :update, :destroy, :favorite]
   before_action :set_q, only: [:index, :search]
 
   # GET /tweets
@@ -16,6 +16,7 @@ class TweetsController < ApplicationController
     @tweet = Tweet.includes(:user).find(params[:id])
     @like = Like.new
     @favorite = Favorite.new
+    
   end
 
   # GET /tweets/new
@@ -57,6 +58,10 @@ class TweetsController < ApplicationController
     @results = @q.result
   end
 
+  def favorite
+    @favorite = current_user.favorited_tweets
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def login_check
@@ -68,7 +73,6 @@ class TweetsController < ApplicationController
     
     def set_tweet
       @tweet = current_user.tweets.find_by(id: params[:id])
-      redirect_to(tweets_path, alert: "ERROR!!") if @tweet.blank?
     end
     # ransackメソッド検索するメソッド
     def set_q

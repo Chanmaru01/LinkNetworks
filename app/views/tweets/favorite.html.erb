@@ -1,0 +1,11 @@
+<div class="card mb-3">
+        <div class="card-body">
+            <div class="field">
+                <h6>いいねしている投稿</h6>
+                <% @favorite.each do |tweet| %>
+                    <%= tweet.content %>
+                    <%= tweet.user.user_name %>
+                <% end %>
+            </div>
+        </div>
+        </div>
