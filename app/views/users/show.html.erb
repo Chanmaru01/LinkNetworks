@@ -1,10 +1,14 @@
-<h3>プロフィール</h3>
+<div class="scroll">
+<div class="title">プロフィール</div>
+    <div class="edit">
+        <%= link_to 'プロフィール編集', edit_user_registration_path, class: "btn btn-outline-success" %>
+    </div>
         <%# 画像挿入 %>
+    <div class="image">
         <% if @user.image? %>
             <%= image_tag @user.image.url, class: "rounded-circle", :size =>'150x150' %>
-        
         <% end %>
-
+    </div>
         <div class="box">
                 <h4><%= @user.user_name %></h4>
 
@@ -13,40 +17,45 @@
                 <h4>自己紹介</h4>
                     <div class="card mb-3">
                     <div class="card-body">
-                    <p><%= @user.pr%></p>
+                        <p><%= @user.pr%></p>
                     </div>
                     </div>
         </div>
             <br>
-        <div class="area">
-            <p><%= link_to 'プロフィール編集', edit_user_registration_path, class: "btn btn-block btn-outline-success" %></p>
-        </div>
-    <%# スクロール機能 %>
-    <div class="scroll">
-        <div class="card mb-3">
-        <div class="card-body">
-            <div class="field">
-                <h6>お気に入り投稿</h6>
-                <% @user.favorited_tweets.each do |tweet| %>
-                    <%= tweet.content %>
-                    <%= tweet.user.user_name %>
-                <% end %>
+        
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h5>お気に入り投稿</h5>
+            </div>
+            <div class="col">
+                <h5>投稿一覧</h5>
             </div>
         </div>
-        </div>
-    
-    <div class="scroll">
-        <div class="card mb-3">
-        <div class="card-body">
-            <div class="field">
-                <h6>マイ投稿</h6>
-                <% @user.tweets.each do |tweet| %>
-                    <%= tweet.content %>
-                    <%= tweet.user.user_name %>
-                <% end %>
-            </div>
-        </div>
-        </div>
-<br>
-<p><%= link_to "トップに戻る", tweets_path, class: "btn btn-block btn-outline-success" %></p>
     </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><% @user.favorited_tweets.each do |tweet| %></h5>
+                    <p class="card-text"><% if tweet.image? %>
+                                        <%= image_tag tweet.image.url, :size =>'320x380' %>
+                                    <% end %></p>
+                    <p class="card-text"><%= tweet.user.user_name %></p>
+                    <p class="card-text"><%= tweet.content %></p>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

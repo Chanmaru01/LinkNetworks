@@ -1,6 +1,49 @@
-<h1>ユーザー一覧</h1>
-<% @users.each do |user| %>
-    <a href="/users/<%= user.id %>"><%= user.email %></a>
-    <hr>
-<% end %>
-<%= link_to "トップへ戻る", tweets_path %>
+<% @tweets.each do |tweet| %>
+        <div class="card mb-3">
+            <div class="card-body">
+                <p class="card-text"><%= tweet.user.user_name %></p>
+            <%# 編集、削除ボタンの制御 %>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <% if user_signed_in? && tweet.user == current_user %>
+                    <div class="text-right">
+                        <%= link_to '編集', edit_tweet_path(tweet), class: "btn btn-outline-success" %>
+                        <%= link_to '削除', tweet, method: :delete, class: "btn btn-outline-success" %>
+                    </div>
+                    <% end %>
+                </div>
+                <%# 画像 %>
+                    <% if tweet.image? %>
+                        <%= image_tag tweet.image.url, :size =>'420x500' %>
+                    <% end %>
+                <p class="card-text"><%= tweet.content %></p>
+                
+                    <% if user_signed_in? %>
+                    <div class="btn-group" role="group">
+                <%# いいね機能ボタン %>
+                        <% if current_user.already_liked?(tweet) %>
+                        <div class="button">
+                            <%= link_to tweet_like_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
+                            <span>いいね解除</span>
+                            <%= tweet.likes.count %>
+                        </div>
+                        <% else %>
+                        <div class="button">
+                            <%= link_to tweet_likes_path(id: tweet.id, tweet_id: tweet.id), method: :post %>
+                            <span>いいね</span>
+                            <%= tweet.likes.count %>
+                        </div>
+                        <% end %>
+                <%# お気に入り機能ボタン %>
+                        <% if current_user.already_favorited?(tweet) %>
+                            <%= link_to 'お気に入り解除', tweet_favorite_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
+                            <%= tweet.favorites.count %>                
+                        <% else %>
+                            <%= link_to 'お気に入り', tweet_favorites_path(id: tweet.id, tweet_id: tweet.id), method: :post %>
+                            <%= tweet.favorites.count %>        
+                        <% end %>
+                    </div>
+                    <% end %>
+            </div>
+        </div>
+        
+    <% end %>

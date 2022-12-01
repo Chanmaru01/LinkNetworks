@@ -10,13 +10,12 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require font-awesome
  *= require_tree .
  *= require_self
  */
 main {
-    min-height: calc(100vh - 60px);
-    overflow: hidden;
-    // padding-top: 60px;
+    
     // background-color: #28a745;
 }
 
@@ -24,9 +23,11 @@ header {
     height: 60px;
 }
 
-footer {
-    height: 60px;
+body {
+    margin: 0;
 }
+
+
 
 @import "bootstrap";
 @import "layouts";
