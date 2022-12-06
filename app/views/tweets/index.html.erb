@@ -1,6 +1,6 @@
 
     <div class="title-1">投稿一覧</div>
-    <%# 検索機能追加 %>
+        <%# 検索機能追加 %>
     
         <div class="text-right">
             <%= search_form_for @q, url: search_tweets_path do |f| %>
@@ -26,7 +26,7 @@
                     <% if user_signed_in? && tweet.user == current_user %>
                     <div class="text-right">
                         <%= link_to '編集', edit_tweet_path(tweet), class: "btn btn-outline-success" %>
-                        <%= link_to '削除', tweet, method: :delete, class: "btn btn-outline-success" %>
+                        <%= link_to '削除', tweet, method: :delete, class: "btn btn-outline-danger" %>
                     </div>
                     <% end %>
                 </div>
@@ -40,25 +40,27 @@
                     <div class="btn-group" role="group">
                 <%# いいね機能ボタン %>
                         <% if current_user.already_liked?(tweet) %>
-                        <div class="button">
-                            <%= link_to tweet_like_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
-                            <span>いいね解除</span>
+                        <div class="btn btn-outline-success">
+                            <%= link_to 'いいね解除', tweet_like_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
                             <%= tweet.likes.count %>
                         </div>
                         <% else %>
-                        <div class="button">
-                            <%= link_to tweet_likes_path(id: tweet.id, tweet_id: tweet.id), method: :post %>
-                            <span>いいね</span>
+                        <div class="btn btn-outline-success">
+                            <%= link_to 'いいね', tweet_likes_path(id: tweet.id, tweet_id: tweet.id), method: :post %>
                             <%= tweet.likes.count %>
                         </div>
                         <% end %>
                 <%# お気に入り機能ボタン %>
                         <% if current_user.already_favorited?(tweet) %>
+                        <div class="btn btn-outline-success">
                             <%= link_to 'お気に入り解除', tweet_favorite_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
-                            <%= tweet.favorites.count %>                
+                            <%= tweet.favorites.count %>   
+                        </div>            
                         <% else %>
+                        <div class="btn btn-outline-success">
                             <%= link_to 'お気に入り', tweet_favorites_path(id: tweet.id, tweet_id: tweet.id), method: :post %>
-                            <%= tweet.favorites.count %>        
+                            <%= tweet.favorites.count %>
+                        </div>
                         <% end %>
                     </div>
                     <% end %>
