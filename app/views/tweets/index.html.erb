@@ -2,21 +2,22 @@
     <div class="title-1">投稿一覧</div>
     <%# 検索と新規投稿のグループ化 %>
     <div class="mixbox">
-    <div class="d-flex bd-highlight">
-        <div class="p-2 w-50 bd-highlight">
-        <%# 検索機能追加 %>
-            <h5><%= search_form_for @q, url: search_tweets_path do |f| %>
-                    <%= f.label :content_cont, '投稿' %>
-                    <%= f.search_field :content_cont, class: "btn btn-light btn-sm" %>
-                    <%= f.submit '検索', class: "btn btn-light btn-sm" %>
-            </h5><% end %>
-        </div>
-        <div class="p-2 flex-shrink-1 bd-highlight">
-            <h5><% if user_signed_in? %>
-                <%= link_to '新規投稿', new_tweet_path, class: "btn btn-light btn-sm" %>
-            </h5><% end %>
-        </div>
-    </div>
+            <div class="d-flex bd-highlight">
+                <div class="p-2 w-50 bd-highlight">
+                <%# 検索機能追加 %>
+                    <h5><%= search_form_for @q, url: search_tweets_path do |f| %>
+                            <%= f.label :content_cont, '投稿' %>
+                            <%= f.search_field :content_cont, class: "btn btn-light btn-sm" %>
+                            <%= f.submit '検索', class: "btn btn-light btn-sm" %>
+                    </h5><% end %>
+                </div>
+                <%# 新規投稿 %>
+                <div class="p-2 flex-shrink-1 bd-highlight">
+                    <h5><% if user_signed_in? %>
+                        <%= link_to '新規投稿', new_tweet_path, class: "btn btn-light btn-sm" %>
+                    </h5><% end %>
+                </div>
+            </div>
     </div>
     <%# 画面スクロール %>
     <div class="scroll">
@@ -24,16 +25,24 @@
     <% @tweets.each do |tweet| %>
         <div class="card mb-3">
             <div class="card-body">
-                <p class="card-text"><%= tweet.user.user_name %></p>
-            <%# 編集、削除ボタンの制御 %>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <% if user_signed_in? && tweet.user == current_user %>
-                    <div class="text-right">
-                        <%= link_to '編集', edit_tweet_path(tweet), class: "btn btn-outline-success" %>
-                        <%= link_to '削除', tweet, method: :delete, class: "btn btn-outline-danger" %>
+                <%# ユーザーネームと編集、削除ボタンの横並び %>
+                <div class="d-flex bd-highlight">
+                    <div class="p-2 w-100 bd-highlight">
+                        <p class="card-text"><%= tweet.user.user_name %></p>
                     </div>
-                    <% end %>
+                <%# 編集、削除ボタンの制御 %>
+                    <div class="p-2 flex-shrink-1 bd-highlight">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <% if user_signed_in? && tweet.user == current_user %>
+                            <div class="text-right">
+                                <%= link_to '編集', edit_tweet_path(tweet), class: "btn btn-outline-success" %>
+                                <%= link_to '削除', tweet, method: :delete, class: "btn btn-outline-danger" %>
+                            </div>
+                            <% end %>
+                        </div>
+                    </div>
                 </div>
+
                 <%# 画像 %>
                     <% if tweet.image? %>
                         <%= image_tag tweet.image.url, :size =>'420x500' %>
