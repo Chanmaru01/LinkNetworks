@@ -2,7 +2,8 @@
     <div class="title-1">投稿一覧</div>
     <%# 検索と新規投稿のグループ化 %>
     <div class="mixbox">
-        <div class="search">
+    <div class="d-flex bd-highlight">
+        <div class="p-2 w-50 bd-highlight">
         <%# 検索機能追加 %>
             <h5><%= search_form_for @q, url: search_tweets_path do |f| %>
                     <%= f.label :content_cont, '投稿' %>
@@ -10,11 +11,12 @@
                     <%= f.submit '検索', class: "btn btn-light btn-sm" %>
             </h5><% end %>
         </div>
-        <div class="title-2">
+        <div class="p-2 flex-shrink-1 bd-highlight">
             <h5><% if user_signed_in? %>
                 <%= link_to '新規投稿', new_tweet_path, class: "btn btn-light btn-sm" %>
             </h5><% end %>
         </div>
+    </div>
     </div>
     <%# 画面スクロール %>
     <div class="scroll">
