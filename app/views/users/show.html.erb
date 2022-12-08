@@ -6,19 +6,22 @@
         <%# 画像挿入 %>
     <div class="image">
         <% if @user.image? %>
-            <%= image_tag @user.image.url, class: "rounded-circle", :size =>'150x150' %>
+            <%= image_tag @user.image.url, class: "rounded-circle", :size =>'180x180' %>
         <% end %>
     </div>
+    <%# スペースを設けるためのｂｒ %>
+    <br>
         <div class="box">
-                <h4><%= @user.user_name %></h4>
+                <div class="name"><h6><%= @user.user_name %></h6></div>
 
-                    <p><%= @user.email %></p>
-
-                <h4>自己紹介</h4>
+                <div class="mail"><%= @user.email %></div>
+                <br>
+                <div class="pr"><h5>自己紹介</h5></div>
+                <br>
                     <div class="card mb-3">
-                    <div class="card-body">
-                        <p><%= @user.pr%></p>
-                    </div>
+                        <div class="card-body">
+                            <p><%= @user.pr%></p>
+                        </div>
                     </div>
         </div>
             <br>
@@ -33,7 +36,7 @@
             </div>
         </div>
     </div>
-
+    <br>
     <div class="row">
     <%# お気に入りした投稿一覧 %>
         <div class="col-sm-6">
@@ -119,5 +122,6 @@
             <% end %>    
         </div>
     </div>
+    <br>
     <p><%= link_to "トップに戻る", tweets_path, class: "btn btn-block btn-outline-success" %></p>
 </div>
