@@ -34,15 +34,16 @@
         </div>
     </div>
 
-        <div class="row">
+    <div class="row">
+    <%# お気に入りした投稿一覧 %>
         <div class="col-sm-6">
-                    <% @user.favorited_tweets.each do |tweet| %>
+            <% @user.favorited_tweets.each do |tweet| %>
                 <div class="card">
                 <div class="card-body">
                     <h5 class="card-title"><%= tweet.user.user_name %></h5>
                     <p class="card-text"><% if tweet.image? %>
-                        <%= image_tag tweet.image.url, :size =>'320x380' %>
-                    <% end %></p>
+                                            <%= image_tag tweet.image.url, :size =>'320x380' %>
+                                        <% end %></p>
                     <p class="card-text"><%= tweet.content %></p>
                     <% if user_signed_in? %>
                     <div class="btn-group" role="group">
@@ -74,20 +75,48 @@
                     <% end %>
                 </div>
                 </div>
-                    <% end %>
+            <% end %>
         </div>
+    <%# 自分の投稿一覧 %>
         <div class="col-sm-6">
-            <div class="card">
+            <% @user.tweets.each do |tweet| %>
+                <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"><% @user.tweets.each do |tweet| %></h5>
                     <p class="card-text"><% if tweet.image? %>
-                                        <%= image_tag tweet.image.url, :size =>'320x380' %>
-                                    <% end %></p>
-                    <p class="card-text"><%= tweet.user.user_name %></p>
+                                            <%= image_tag tweet.image.url, :size =>'320x380' %>
+                                        <% end %></p>
                     <p class="card-text"><%= tweet.content %></p>
+                    <% if user_signed_in? %>
+                    <div class="btn-group" role="group">
+                <%# いいね機能ボタン %>
+                        <% if current_user.already_liked?(tweet) %>
+                        <div class="btn btn-outline-success">
+                            <%= link_to 'いいね解除', tweet_like_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
+                            <%= tweet.likes.count %>
+                        </div>
+                        <% else %>
+                        <div class="btn btn-outline-success">
+                            <%= link_to 'いいね', tweet_likes_path(id: tweet.id, tweet_id: tweet.id), method: :post %>
+                            <%= tweet.likes.count %>
+                        </div>
+                        <% end %>
+                <%# お気に入り機能ボタン %>
+                        <% if current_user.already_favorited?(tweet) %>
+                        <div class="btn btn-outline-success">
+                            <%= link_to 'お気に入り解除', tweet_favorite_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
+                            <%= tweet.favorites.count %>   
+                        </div>            
+                        <% else %>
+                        <div class="btn btn-outline-success">
+                            <%= link_to 'お気に入り', tweet_favorites_path(id: tweet.id, tweet_id: tweet.id), method: :post %>
+                            <%= tweet.favorites.count %>
+                        </div>
+                        <% end %>
+                    </div>
                     <% end %>
                 </div>
-            </div>
+                </div>
+            <% end %>    
         </div>
     </div>
     <p><%= link_to "トップに戻る", tweets_path, class: "btn btn-block btn-outline-success" %></p>
