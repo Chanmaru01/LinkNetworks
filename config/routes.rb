@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   end
 
   
-  get "users/show" => "users#show"
+
+  get "users/:id" => "users#show"
   
   root to: "tweets#index"
 end
