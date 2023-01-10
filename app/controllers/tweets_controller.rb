@@ -16,7 +16,9 @@ class TweetsController < ApplicationController
     @tweet = Tweet.includes(:user).find(params[:id])
     @like = Like.new
     @favorite = Favorite.new
-    
+    @comments = @tweet.comments
+    @comment = current_user.comments.new
+
   end
 
   # GET /tweets/new

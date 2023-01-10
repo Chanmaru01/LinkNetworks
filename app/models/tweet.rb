@@ -9,4 +9,6 @@ class Tweet < ApplicationRecord
   # 上記と同様
   has_many :favorites, dependent: :destroy
   has_many :favorite_users, through: :favorites, source: :user
+  # コメント機能追加
+  has_many :comments, dependent: :destroy
 end

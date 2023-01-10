@@ -9,6 +9,8 @@ class User < ApplicationRecord
     mount_uploader :image, ImageUploader
 
     has_many :tweets, dependent: :destroy
+  # コメント機能
+    has_many :comments
   # いいね機能
     has_many :likes, dependent: :destroy
     has_many :liked_tweets, through: :likes, source: :tweet

@@ -1,12 +1,18 @@
-<p id="notice"><%= notice %></p>
-<h5>投稿詳細ページ</h5>
-<%= render @tweet %>
-<h6>いいねしたユーザー</h6>
-<% @tweet.liked_users.each do |user| %>
-    <li><%= user.user_name %></li>
+<h2>投稿詳細</h2>
+
+<%= @tweet.content %>
+
+<h2> コメントをする</h2>
+
+<%= form_with(model:[@tweet, @comment], method: :post) do |f| %>
+    <%= f.text_area :comment_content %>
+    <%= f.hidden_field :tweet_id, value: @tweet.id %>
+    <%= f.submit 'コメントする' %>
 <% end %>
+<h2> コメント一覧</h2>
 
-
-<h6><%= link_to 'トップに戻る', tweets_path %>
-
-<%# スクロール入れる %>
+<%# コメントの内容が表示される %>
+<% @comments.each do |comment| %>
+    <%= comment.comment_content %>
+<% end %>
+<%= link_to 'ホーム', root_path %>
