@@ -1,12 +1,9 @@
 <p class="title-1">投稿詳細</p>
-
-<%= render @tweet %>
-<%= @tweet.image.url %>
-
-
 <div class="card mb-3">
 
-    <img src="..." class="card-img-top" alt="...">
+    <% if @tweet.image? %>
+                <%= image_tag @tweet.image.url, :size =>'420x500' %>
+            <% end %>
     <div class="card-body">
         <h6 class="card-title"><%= @tweet.user.user_name %></h6>
         <p class="card-text"><%= @tweet.content %></p>

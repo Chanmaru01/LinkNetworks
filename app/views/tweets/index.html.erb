@@ -31,8 +31,8 @@
                   <%# ユーザーネームと編集、削除ボタンの横並び %>
                     <div class="d-flex bd-highlight">
                         <div class="p-2 w-100 bd-highlight">
-                <%# エラー部分 %>
-                            <%# <%= link_to tweet.user.user_name, users_show_path %>
+                          <%# ユーザーネーム %>
+                            <%= link_to tweet.user.user_name, user_path(tweet.user) %>
                         </div>
                             <%= link_to '詳細', tweet_path(tweet), class: "btn btn-outline-success" %>
 
