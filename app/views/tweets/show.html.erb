@@ -1,27 +1,29 @@
-<h2>投稿詳細</h2>
+<p class="title-1">投稿詳細</p>
 
-<%= @tweet.content %>
+<%= render @tweet %>
+<%= @tweet.image.url %>
 
-<h2> コメントをする</h2>
-
-<%= form_with(model:[@tweet, @comment], method: :post) do |f| %>
-    <%= f.text_area :comment_content %>
-    <%= f.hidden_field :tweet_id, value: @tweet.id %>
-    <%= f.submit 'コメントする' %>
-<% end %>
-<h2> コメント一覧</h2>
-
-<%# コメントの内容が表示される %>
-<% @comments.each do |comment| %>
-    <%= comment.comment_content %>
-<% end %>
-<%= link_to 'ホーム', root_path %>
 
 <div class="card mb-3">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-  </div>
+
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <h6 class="card-title"><%= @tweet.user.user_name %></h6>
+        <p class="card-text"><%= @tweet.content %></p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+
 </div>
+    <h6> コメント</h6>
+    <%= form_with(model:[@tweet, @comment], method: :post) do |f| %>
+        <%= f.text_area :comment_content %>
+        <%= f.hidden_field :tweet_id, value: @tweet.id %>
+        <%= f.submit '送信' %>
+    <% end %>
+
+    <h5> コメント一覧</h5>
+    <%# コメントの内容が表示される %>
+    <% @comments.each do |comment| %>
+        <%= comment.comment_content %>
+    <% end %>
+    <%= link_to 'ホーム', root_path %>
