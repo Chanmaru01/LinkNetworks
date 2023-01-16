@@ -31,6 +31,14 @@
                   <%# ユーザーネームと編集、削除ボタンの横並び %>
                     <div class="d-flex bd-highlight">
                         <div class="p-2 w-100 bd-highlight">
+                        <%# ユーザー画像 %>
+                        <div class="image">
+                            <% if tweet.user.image? %>
+                                <%= image_tag tweet.user.image.url, class: "rounded-circle", :size =>'70x70' %>
+                            <% else %>
+                                <%= image_tag 'default_profile_user_icon.png', class: "rounded-circle", :size =>'70x70' %>
+                            <% end %>
+                        </div>
                           <%# ユーザーネーム %>
                             <%= link_to tweet.user.user_name, user_path(tweet.user) %>
                         </div>

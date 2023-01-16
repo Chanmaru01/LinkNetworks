@@ -7,6 +7,8 @@
     <div class="image">
         <% if @user.image? %>
             <%= image_tag @user.image.url, class: "rounded-circle", :size =>'180x180' %>
+        <% else %>
+            <%= image_tag 'default_profile_user_icon.png', class: "rounded-circle", :size =>'180x180' %>
         <% end %>
     </div>
     <%# スペースを設けるためのｂｒ %>
