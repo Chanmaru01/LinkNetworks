@@ -23,84 +23,110 @@
       </div>
     </div>
 
-<%# 画面スクロール %>
-<div class="scroll">
-  <div class="row">
-      <% @tweets.each do |tweet| %>
-          <div class="col-sm-6">
-            <div class="card h-100">
-                <div class="card">
-                  <div class="card-body">
-                    <%# ユーザーネームと編集、削除ボタンの横並び %>
-                      <div class="d-flex bd-highlight">
-                          <div class="p-2 w-100 bd-highlight">
-                          <%# ユーザー画像 %>
-                            <div class="image">
-                                <% if tweet.user.image? %>
-                                    <%= image_tag tweet.user.image.url, class: "rounded-circle", :size =>'70x70' %>
-                                <% else %>
-                                    <%= image_tag 'default_profile_user_icon.png', class: "rounded-circle", :size =>'70x70' %>
+<%# 画面スクロール 修正できたためコメントアウト %>
+<%# <div class="scroll"> %>
+    <div class="row">
+        <% @tweets.each do |tweet| %>
+            <div class="col-sm-6">
+              <div class="card h-100">
+                  <%# <div class="card"> %>
+                    <div class="card-body">
+                      <%# ユーザーネームと編集、削除ボタンの横並び %>
+                        <div class="d-flex bd-highlight">
+                            <div class="p-2 w-100 bd-highlight">
+                              <table>
+                                <%# ユーザー画像 %>
+                                <td>
+                                  <div class="image">
+                                      <% if tweet.user.image? %>
+                                          <%= image_tag tweet.user.image.url, class: "rounded-circle", :size =>'70x70' %>
+                                      <% else %>
+                                          <%= image_tag 'default_profile_user_icon.png', class: "rounded-circle", :size =>'70x70' %>
+                                      <% end %>
+                                  </div>
+                                </td>
+                                <%# 画像とユーザーネームの空白 %>
+                                <td><p>　</p></td>
+                                <%# ユーザーネーム %>
+                                <td>
+                                  <%= link_to tweet.user.user_name, user_path(tweet.user) %>
+                                </td>
+                              </table>
+                            </div>
+
+                            <details>
+                            <summary></summary>
+                              <div class="text-right">
+                                <%= link_to '詳細', tweet_path(tweet), class: "btn btn-outline-success" %>
+                              </div>
+                              <%# 編集、削除ボタンの制御 %>
+                                <% if user_signed_in? && tweet.user == current_user %>
+                                  <div class="text-right">
+                                      <%= link_to '編集', edit_tweet_path(tweet), class: "btn btn-outline-success" %>
+                                      <%= link_to '削除', tweet, method: :delete, class: "btn btn-outline-danger" %>
+                                  </div>
                                 <% end %>
-                            </div>
-                            <br>
-                            <%# ユーザーネーム %>
-                              <%= link_to tweet.user.user_name, user_path(tweet.user) %>
-                          </div>
-
-                          <details>
-                          <summary></summary>
-                            <div class="text-right">
-                              <%= link_to '詳細', tweet_path(tweet), class: "btn btn-outline-success" %>
-                            </div>
-                            <%# 編集、削除ボタンの制御 %>
-                              <% if user_signed_in? && tweet.user == current_user %>
-                                <div class="text-right">
-                                    <%= link_to '編集', edit_tweet_path(tweet), class: "btn btn-outline-success" %>
-                                    <%= link_to '削除', tweet, method: :delete, class: "btn btn-outline-danger" %>
-                                </div>
-                              <% end %>
-                          </details>
-                      </div>
-
-                      <%# 画像 %>
-                        <% if tweet.image? %>
-                            <%= image_tag tweet.image.url, :size =>'220x220' %>
-                        <% end %>
-                        <p class="card-text"><%= tweet.content %></p>
-
-                      <% if user_signed_in? %>
-                        <div class="btn-group" role="group">
-                          <%# いいね機能ボタン %>
-                          <% if current_user.already_liked?(tweet) %>
-                            <div class="btn btn-outline-success">
-                                <%= link_to 'いいね解除', tweet_like_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
-                                <%= tweet.likes.count %>
-                            </div>
-                          <% else %>
-                            <div class="btn btn-outline-success">
-                                <%= link_to 'いいね', tweet_likes_path(id: tweet.id, tweet_id: tweet.id), method: :post %>
-                                <%= tweet.likes.count %>
-                            </div>
-                          <% end %>
-                          
-                          <%# お気に入り機能ボタン %>
-                          <% if current_user.already_favorited?(tweet) %>
-                            <div class="btn btn-outline-success">
-                                <%= link_to 'お気に入り解除', tweet_favorite_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
-                                <%= tweet.favorites.count %>   
-                            </div>            
-                          <% else %>
-                            <div class="btn btn-outline-success">
-                                <%= link_to 'お気に入り', tweet_favorites_path(id: tweet.id, tweet_id: tweet.id), method: :post %>
-                                <%= tweet.favorites.count %>
-                            </div>
-                          <% end %>
+                            </details>
                         </div>
-                      <% end %>
+
+                        <table>
+                          <%# 画像 %>
+                          <td>
+                            <% if tweet.image? %>
+                                <%= image_tag tweet.image.url, :size =>'220x220' %>
+                            <% end %>
+                          </td>
+                          <%# 画像と内容の空白 %>
+                          <td><p>　</p></td>
+                          <%# 投稿内容 %>
+                          <td>
+                            <p class="card-text"><%= tweet.content %></p>
+                          </td>
+                        </table>
+                        <%# 改行 %>
+                        <br>
+                        <% if user_signed_in? %>
+                          <div class="btn-group" role="group">
+                            <%# いいね機能ボタン %>
+                            <% if current_user.already_liked?(tweet) %>
+                              <div class="btn btn-outline-success">
+                                  <%= link_to 'Un like', tweet_like_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
+                                  <%= tweet.likes.count %>
+                              </div>
+                            <% else %>
+                              <div class="btn btn-outline-success">
+                                  <%= link_to 'Like', tweet_likes_path(id: tweet.id, tweet_id: tweet.id), method: :post %>
+                                  <%= tweet.likes.count %>
+                              </div>
+                            <% end %>
+                            
+                            <%# お気に入り機能ボタン %>
+                            <% if current_user.already_favorited?(tweet) %>
+                              <div class="btn btn-outline-success">
+                                  <%= link_to 'Un star', tweet_favorite_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
+                                  <%= tweet.favorites.count %>   
+                              </div>            
+                            <% else %>
+                              <div class="btn btn-outline-success">
+                                  <%= link_to 'Star', tweet_favorites_path(id: tweet.id, tweet_id: tweet.id), method: :post %>
+                                  <%= tweet.favorites.count %>
+                              </div>
+                            <% end %>
+                          </div>
+                        <% end %>
+                  </div>
+                <%# </div> %>
               </div>
             </div>
-          </div>
-        </div>
-      <% end %>
-  </div>
-</div>
+          <% end %>
+      </div>
+    <%# 改行 %>
+    <br>
+
+    <button class="btn btn-outline-success">
+      <a href="#" id="page-top">TOP→</a>
+    </button>
+
+    <%# 改行 %>
+    <br>
+<%# </div> %>

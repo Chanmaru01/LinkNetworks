@@ -16,8 +16,10 @@
     <br>
         <div class="box">
                 <div class="name"><h6><%= @user.user_name %></h6></div>
-
+                
+            <% if user_signed_in? && tweet.user == current_user %>
                 <div class="mail"><%= @user.email %></div>
+            <% end %>
                 <br>
                 <div class="pr"><h5>自己紹介</h5></div>
                 <br>

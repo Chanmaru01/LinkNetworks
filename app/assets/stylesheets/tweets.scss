@@ -1,11 +1,13 @@
 // Place all the styles related to the tweets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.scroll {
-    width: auto;
-    height: auto;
-    overflow: auto;
-}
+
+// .scroll {
+//     width: auto;
+//     height: auto;
+//     overflow: auto;
+// }
+
 .area {
     color:#fff;
     background-color: #28A745;
@@ -45,6 +47,12 @@
     color: #28A745;
 }
 
-.image {
-    text-align: left;
+.td {
+    float: left;
+    padding: 10px;
+}
+
+.btn-group {
+    text-align:left;
+    
 }
