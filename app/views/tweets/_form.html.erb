@@ -11,16 +11,16 @@
   <% end %>
   <%# 画像アップロード %>
   <div class="field form-group">
-    <%= form.label "画像アップロード" %>
+    <%= form.label "・" %>
     <%= form.file_field :image %>
   </div>
 <%# 投稿内容 %>
   <div class="field form-group">
-    <%= form.label "投稿内容" %>
-    <%= form.text_field :content, id: :tweet_content, class:"form-control" %>
+    <h5><%= form.label "投稿内容" %></h5>
+        <%= form.text_field :content, id: :tweet_content, class:"form-control" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit class: "btn btn-primary" %>
+  <div class="text-left">
+    <%= form.submit "投 稿", class: "btn btn-outline-success" %>
   </div>
 <% end %>

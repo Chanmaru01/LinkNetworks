@@ -5,7 +5,7 @@
         <%= link_to 'プロフィール編集', edit_user_registration_path, class: "btn btn-outline-success" %>
     </div>
         <%# 画像挿入 %>
-    <div class="image">
+    <div class="image-1">
         <% if @user.image? %>
             <%= image_tag @user.image.url, class: "rounded-circle", :size =>'180x180' %>
         <% else %>
