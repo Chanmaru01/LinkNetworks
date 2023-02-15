@@ -2,3 +2,11 @@ input[type="submit"][value="Cancel my account"] {
     @extend .btn !optional;
     @extend .btn-danger !optional;
 }
+
+.title {
+        font-size: 1.5em;/* フォントサイズ */
+        font-weight: bold;/* フォント太さ */
+        padding-top: 1em;
+        padding-bottom: 1em;
+        margin-bottom: 2em;
+}

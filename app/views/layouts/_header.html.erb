@@ -1,41 +1,52 @@
 <header>
     <nav class="navbar navbar-expand-sm navbar-dark bg-success">
-        <span class="navbar-brand mb-0 h1"><%= link_to 'LiNex', root_path, class: "navbar-brand" %></span>
+        <%# もしユーザーがログインしているならば投稿一覧画面へ %>
+        <%  if user_signed_in?  %>
+            <span class="navbar-brand mb-4 h5"><%= link_to 'LiNex', tweets_path, class: "navbar-brand" %></span>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
             </button>
-        <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+        <%# ログインしていないのならアプリ説明画面へ %>
+        <% else %>
+            <span class="navbar-brand mb-4 h5"><%= link_to 'LiNex', root_path, class: "navbar-brand" %></span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            </button>
+        <% end %>
+    
+        <div class="navbar-collapse justify-content-end" id="navbarNavAltMarkup">
         <%# もしユーザーがログインしているならば下記を表示 %>
         <%  if user_signed_in?  %>
             <div class="navbar-nav">
-                <li class="nav-item active">
+                <ul class="nav-item active">
                     <%= link_to "プロフィール", user_path(current_user.id) , class: "nav-link" %>
-                </li>
+                </ul>
 
-                <li class="nav-item active">
+                <ul class="nav-item active">
                     <%= link_to "新規投稿", new_tweet_path, class: "nav-link" %>
-                </li>
+                </ul>
 
-                <li class="nav-item active">
+                <ul class="nav-item active">
+                    <%= link_to "ホーム", tweets_path, class: "nav-link" %>
+                </ul>
+                
+                <ul class="nav-item active">
                     <%= link_to "設定", edit_user_registration_path, class: "nav-link" %>
-                </li>
+                </ul>
 
-                <li class="nav-item">
+                <ul class="nav-item">
                     <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
-                </li>
+                </ul>
+            </div>
         <%# ログインしていないのなら下記を表示 %>
         <% else %>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">ホーム<span class="sr-only">(current)</span></a>
-                </li>
+            <div class="navbar-nav">
 
-                <li class="nav-item">
-                    <%= link_to "サインイン", new_user_registration_path, class: "nav-link" %>
-                </li>
+                <ul class="nav-item active">
+                    <%= link_to "サインアップ", new_user_registration_path, class: "nav-link" %>
+                </ul>
 
-                <li class="nav-item">
+                <ul class="nav-item active">
                     <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
-                </li>
+                </ul>
         <% end %>
             </div>
         </div>

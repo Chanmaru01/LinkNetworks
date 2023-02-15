@@ -21,5 +21,5 @@ Rails.application.routes.draw do
 
   get "users/:id" => "users#show"
   
-  root to: "tweets#index"
+  root to: "home#index"
 end

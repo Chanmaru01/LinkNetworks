@@ -15,4 +15,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:user_name, :pr, :image ])
   end
 
+  def after_sign_in_path_for(resource)
+    tweets_path
+  end
+  
 end

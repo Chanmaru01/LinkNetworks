@@ -1,11 +1,12 @@
-<h2>アカウント作成</h2>
+<br>
+<p class="title">アカウント作成</p>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   
 <%# サインアップ時に画像を入力できるようにフォームを追加 %>
   <div class="field">
-    <%= f.label "画像アップロード" %><br />
+    <%= f.label "ユーザー画像" %><br />
     <%= f.file_field :image, autofocus: true %>
   </div>
 
@@ -34,7 +35,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "アカウント作成" %>
+    <%= f.submit "アカウント作成", class: "btn btn-outline-success" %>
   </div>
 <% end %>
 
