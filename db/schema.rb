@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20230104073829) do
+ActiveRecord::Schema.define(version: 20230220152214) do
 
   create_table "comments", force: :cascade do |t|
     t.string "comment_content"
@@ -38,6 +38,24 @@ ActiveRecord::Schema.define(version: 20230104073829) do
     t.datetime "updated_at", null: false
     t.index ["tweet_id"], name: "index_likes_on_tweet_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "memos", force: :cascade do |t|
+    t.string "title"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_memos_on_user_id"
+  end
+
+  create_table "todos", force: :cascade do |t|
+    t.string "content"
+    t.integer "memo_id"
+    t.integer "position"
+    t.boolean "done", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["memo_id"], name: "index_todos_on_memo_id"
   end
 
   create_table "tweets", force: :cascade do |t|

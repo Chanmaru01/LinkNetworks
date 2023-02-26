@@ -1,12 +1,6 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.scroll {
-    width: auto;
-    height: auto;
-    overflow: auto;
-}
-    
 .title {
     font-size: 150%;
     font-weight: bold;/* フォント太さ */
@@ -19,29 +13,12 @@
     color: #28a745;
 }
 
-.image-1 {
-    text-align: center;
-}
-
 .name {
-    color: #28a745;
-    text-align: center;
-}
-
-.mail {
     text-align: center;
 }
 
 .edit {
     text-align: right;
-}
-
-.pr {
-    color: white;
-    text-align: center;
-    background-color: #28a745;
-    width: 100%;
-    height: 30px;
 }
 
 .col {
@@ -53,4 +30,24 @@
 
 .h5 {
     text-align: center;
+}
+// 画像と自己紹介文の横並び
+.flex{
+    display: flex;
+}
+
+.right{
+    width: 1000px;
+}
+.left{
+    width: 200px;
+    padding-bottom: 0;
+}
+
+.pr {
+    color: white;
+    text-align: center;
+    background-color: #28a745;
+    width: 100%;
+    height: 20px;
 }

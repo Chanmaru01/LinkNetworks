@@ -1,0 +1,14 @@
+<%# modalを閉じる処理 %>
+$("#memoModal").modal("hide");
+$('body').removeClass('modal-open');
+$('.modal-backdrop').remove();
+
+
+<%# Rails @status => true 画面の書き換え : false モーダルを再度表示 %>
+<% if @status %>
+$("#memosIndex").append("<%= j(render @memo) %>");
+
+<% else %>
+$("#modalArea").html("<%= j(render 'memos/form', memo: @memo) %>")
+$("#modalArea").find(".modal").modal('show')
+<% end %>

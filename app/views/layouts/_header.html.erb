@@ -25,12 +25,12 @@
                 </ul>
 
                 <ul class="nav-item active">
-                    <%= link_to "ホーム", tweets_path, class: "nav-link" %>
+                    <%= link_to "Todo", memos_path, class: "nav-link" %>
                 </ul>
                 
-                <ul class="nav-item active">
-                    <%= link_to "設定", edit_user_registration_path, class: "nav-link" %>
-                </ul>
+                <%# <ul class="nav-item active"> %>
+                    <%# <%= link_to "設定", user_password_path, class: "nav-link" %>
+                <%# </ul> %>
 
                 <ul class="nav-item">
                     <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>

@@ -57,17 +57,23 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # devise
 gem 'devise', '~> 4.2'
 
+# manage sort order
+  gem 'acts_as_list', '~> 0.9.19'
+
 # Bootstrap4 and jQuery
   gem 'bootstrap', '~> 4.3.1'
   gem 'jquery-rails'
+
 # 画像の追加
   gem 'carrierwave'
+
 # 検索
   gem 'ransack'
+
 # アイコン
   gem "font-awesome-rails"
 
-  group :production do
+group :production do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pg'
 end
