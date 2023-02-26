@@ -1,4 +1,4 @@
-<div class="card mt-2 todo-card <%=" text-muted bg-light" if todo.done %>"data-model_name="<%= Todo.model_name.singular %>"data-memo_id="<%= todo.memo.id %>"data-id="<%= todo.id %>">
+<div class="card mt-2 todo-card <%=" text-muted bg-light" if todo.done %> "data-model_name=" <%= Todo.model_name.singular %> "data-memo_id=" <%= todo.memo.id %> "data-id=" <%= todo.id %>">
     <div class="card-body pr-1">
         <div class="card-text pr-4">
         <%= todo.done ? tag.del(){simple_format todo.content} : (simple_format todo.content) %>
@@ -20,11 +20,7 @@
             <div class="dropdown-divider"></div>
             <%= link_to "並びかえ", sort_memo_todo_path(todo.memo, todo), class: "dropdown-item", remote: true %>
             <%= link_to "編集", edit_memo_todo_path(todo.memo, todo), class: "dropdown-item", remote: true %>
-            <%= link_to "削除",
-                memo_todo_path(todo.memo, todo),
-                method: :delete,
-                class: "dropdown-item text-danger",
-                remote: true, data: { confirm: 'Are you sure?' } %>
+            <%= link_to "削除", memo_todo_path(todo.memo, todo), method: :delete, class: "dropdown-item text-danger", remote: true, data: { confirm: 'Are you sure?' } %>
         </div>
         </div>
         <div class="card-text">
