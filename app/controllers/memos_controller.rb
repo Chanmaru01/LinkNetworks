@@ -43,7 +43,7 @@ class MemosController < ApplicationController
 
   private
     def set_memo
-      @memo = current_user.memos.find(params[:id])
+      @memo = current_user.memos.find_by(id: params[:id])
       redirect_to(memos_url, alert: "ERROR!!") if @memo.blank?
     end
 
