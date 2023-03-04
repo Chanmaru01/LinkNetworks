@@ -3,15 +3,32 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .memo-title-area {
+    margin-top: 5px;
     height: 80px;
+    font-size: 1.0em;/* フォントサイズ */
+    font-weight: bold;/* フォント太さ */
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-bottom: 2em;
+    // border-top: 3px solid #28A745;/* 上の線 */
+    // border-bottom: 3px solid #28A745;/* 下の線 */
+    color: #28A745;/* フォント色 */
+    text-align: left;/* テキストの位置 */
+}
+
+.new {
+    padding-left: 1em;
+    color: #28A745;/* フォント色 */
 }
 
 .memo-index-area {
+    margin-top: 0em;
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
     height: calc(100% - 80px);
     max-height: calc(100% - 80px);
+    // background-color: #28A745;/* 背景色 */
 }
 
 .todo-card {
