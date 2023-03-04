@@ -4,22 +4,22 @@
             <%= todo.done ? tag.del(){simple_format todo.content} : (simple_format todo.content) %>
         </div>
         <div class="btn-group position-absolute" style="top: 10px; right: 4px">
-            <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button type="button" class="btn text-success" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-ellipsis-v"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-right text-middle">
                 <%= form_with(model: todo, url: [todo.memo, todo], remote: true) do |form| %>
                     <% if todo.done %>
                         <%= form.hidden_field :done, value: false, readonly: true %>
-                        <%= form.submit "未完了", class: "dropdown-item text-success" %>
+                        <%= form.submit "未完了", class: "dropdown-item text-info" %>
                     <% else %>
                         <%= form.hidden_field :done, value: true, readonly: true %>
-                        <%= form.submit "完了！", class: "dropdown-item text-success" %>
+                        <%= form.submit "完了！", class: "dropdown-item text-info" %>
                     <% end %>
                 <% end %>
                 <div class="dropdown-divider"></div>
-                <%= link_to "並びかえ", sort_memo_todo_path(todo.memo, todo), class: "dropdown-item", remote: true %>
-                <%= link_to "編集", edit_memo_todo_path(todo.memo, todo), class: "dropdown-item", remote: true %>
+                <%= link_to "並びかえ", sort_memo_todo_path(todo.memo, todo), class: "dropdown-item text-success", remote: true %>
+                <%= link_to "編集", edit_memo_todo_path(todo.memo, todo), class: "dropdown-item text-success", remote: true %>
                 <%= link_to "削除", memo_todo_path(todo.memo, todo), method: :delete, class: "dropdown-item text-danger", remote: true, data: { confirm: 'Are you sure?' } %>
             </div>
         </div>
