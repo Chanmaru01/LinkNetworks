@@ -1,3 +1,4 @@
+<%# このファイルは使用していない %>
 <div class="scroll">
 <div class="title">プロフィール</div>
     <div class="edit">
@@ -58,24 +59,24 @@
                 <%# いいね機能ボタン %>
                         <% if current_user.already_liked?(tweet) %>
                         <div class="btn btn-outline-success">
-                            <%= link_to 'いいね解除', tweet_like_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
+                            <%= link_to 'Un like', tweet_like_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
                             <%= tweet.likes.count %>
                         </div>
                         <% else %>
                         <div class="btn btn-outline-success">
-                            <%= link_to 'いいね', tweet_likes_path(id: tweet.id, tweet_id: tweet.id), method: :post %>
+                            <%= link_to 'Like', tweet_likes_path(id: tweet.id, tweet_id: tweet.id), method: :post %>
                             <%= tweet.likes.count %>
                         </div>
                         <% end %>
                 <%# お気に入り機能ボタン %>
                         <% if current_user.already_favorited?(tweet) %>
                         <div class="btn btn-outline-success">
-                            <%= link_to 'お気に入り解除', tweet_favorite_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
+                            <%= link_to 'Un star', tweet_favorite_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
                             <%= tweet.favorites.count %>   
                         </div>            
                         <% else %>
                         <div class="btn btn-outline-success">
-                            <%= link_to 'お気に入り', tweet_favorites_path(id: tweet.id, tweet_id: tweet.id), method: :post %>
+                            <%= link_to 'Star', tweet_favorites_path(id: tweet.id, tweet_id: tweet.id), method: :post %>
                             <%= tweet.favorites.count %>
                         </div>
                         <% end %>

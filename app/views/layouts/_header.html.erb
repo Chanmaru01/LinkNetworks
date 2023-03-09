@@ -16,37 +16,37 @@
         <%# もしユーザーがログインしているならば下記を表示 %>
         <%  if user_signed_in?  %>
             <div class="navbar-nav">
-                <ul class="nav-item active">
+                <tdropdown- class="nav-item active">
                     <%= link_to "プロフィール", user_path(current_user.id) , class: "nav-link" %>
-                </ul>
+                </tdropdown->
 
-                <ul class="nav-item active">
+                <td class="nav-item active">
                     <%= link_to "新規投稿", new_tweet_path, class: "nav-link" %>
-                </ul>
+                </td>
 
-                <ul class="nav-item active">
+                <td class="nav-item active">
                     <%= link_to "Todo", memos_path, class: "nav-link" %>
-                </ul>
+                </td>
                 
-                <%# <ul class="nav-item active"> %>
+                <%# <td class="nav-item active"> %>
                     <%# <%= link_to "設定", user_password_path, class: "nav-link" %>
-                <%# </ul> %>
+                <%# </td> %>
 
-                <ul class="nav-item">
+                <td class="nav-item">
                     <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
-                </ul>
+                </td>
             </div>
         <%# ログインしていないのなら下記を表示 %>
         <% else %>
             <div class="navbar-nav">
 
-                <ul class="nav-item active">
+                <td class="nav-item active">
                     <%= link_to "サインアップ", new_user_registration_path, class: "nav-link" %>
-                </ul>
+                </td>
 
-                <ul class="nav-item active">
+                <td class="nav-item active">
                     <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
-                </ul>
+                </td>
         <% end %>
             </div>
         </div>

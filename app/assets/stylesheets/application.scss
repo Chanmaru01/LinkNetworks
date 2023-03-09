@@ -14,13 +14,9 @@
  *= require_tree .
  *= require_self
  */
-main {
-    
-    // background-color: #28a745;
-}
 
 header {
-    height: 60px;
+    height: 65px;
 }
 
 body {
@@ -38,4 +34,5 @@ body {
 @import "scaffolds";
 @import "tweets";
 @import "memos";
+@import "users";
 @import url("https://use.fontawesome.com/releases/v5.8.2/css/all.css");

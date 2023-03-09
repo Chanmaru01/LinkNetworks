@@ -28,7 +28,7 @@
                     </div>
                 </div>
             </div>
-            </div>      
+        </div>      
     </div>
 <br>
 <br>
@@ -47,7 +47,22 @@
     <%# お気に入りした投稿一覧 %>
         <div class="col-sm-6">
             <% @user.favorited_tweets.each do |tweet| %>
-                <div class="card">
+                <div class="card mb-3">
+                    <div class="card-header text-right">
+                        <details>
+                            <summary></summary>
+                                <div class="text-right">
+                                <%= link_to '詳細', tweet_path(tweet), class: "btn btn-outline-success" %>
+                                </div>
+                                <%# 編集、削除ボタンの制御 %>
+                                <% if user_signed_in? && tweet.user == current_user %>
+                                    <div class="text-right">
+                                        <%= link_to '編集', edit_tweet_path(tweet), class: "btn btn-outline-success" %>
+                                        <%= link_to '削除', tweet, method: :delete, class: "btn btn-outline-danger" %>
+                                    </div>
+                                <% end %>
+                        </details>
+                    </div>
                 <div class="card-body">
                     <h5 class="card-title"><%= tweet.user.user_name %></h5>
                     <p class="card-text"><% if tweet.image? %>
@@ -59,24 +74,24 @@
                 <%# いいね機能ボタン %>
                         <% if current_user.already_liked?(tweet) %>
                         <div class="btn btn-outline-success">
-                            <%= link_to 'いいね解除', tweet_like_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
+                            <%= link_to 'Un like', tweet_like_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
                             <%= tweet.likes.count %>
                         </div>
                         <% else %>
                         <div class="btn btn-outline-success">
-                            <%= link_to 'いいね', tweet_likes_path(id: tweet.id, tweet_id: tweet.id), method: :post %>
+                            <%= link_to 'Like', tweet_likes_path(id: tweet.id, tweet_id: tweet.id), method: :post %>
                             <%= tweet.likes.count %>
                         </div>
                         <% end %>
                 <%# お気に入り機能ボタン %>
                         <% if current_user.already_favorited?(tweet) %>
                         <div class="btn btn-outline-success">
-                            <%= link_to 'お気に入り解除', tweet_favorite_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
+                            <%= link_to 'Un star', tweet_favorite_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
                             <%= tweet.favorites.count %>   
                         </div>            
                         <% else %>
                         <div class="btn btn-outline-success">
-                            <%= link_to 'お気に入り', tweet_favorites_path(id: tweet.id, tweet_id: tweet.id), method: :post %>
+                            <%= link_to 'Star', tweet_favorites_path(id: tweet.id, tweet_id: tweet.id), method: :post %>
                             <%= tweet.favorites.count %>
                         </div>
                         <% end %>
@@ -87,37 +102,53 @@
             <% end %>
         </div>
     <%# 自分の投稿一覧 %>
-        <div class="col-sm-6">
+    <div class="col-sm-6">
             <% @user.tweets.each do |tweet| %>
-                <div class="card">
+                <div class="card mb-3">
+                    <div class="card-header bg-success px-6 py-0 text-right">
+                    <%# dropdowe-menuがリンクに飛ばされた後、何らかの原因で使用できないので 代換えしている %>
+                        <details>
+                        <summary  class='fas fa-ellipsis-v pt-2 text-white'></summary>
+                                    <ul class="mt-3 p-0 text-center">
+                                            <li class="py-1"><%= link_to '詳細', tweet_path(tweet), class: "text-success" %></li>
+                                        <%# 編集、削除ボタンの制御 %>
+                                        <% if user_signed_in? && tweet.user == current_user %>
+                                            <li class="py-1"><%= link_to '編集', edit_tweet_path(tweet), class: "text-success" %></li>
+                                            <li class="py-1"><%= link_to '削除', tweet, method: :delete, class: "text-danger" %></li>
+                                        <% end %>
+                                    </ul>
+                    </details>
+                        
+                    </div>
                 <div class="card-body">
-                    <p class="card-text"><% if tweet.image? %>
-                                            <%= image_tag tweet.image.url, :size =>'320x380' %>
-                                        <% end %></p>
+                        <% if tweet.image? %>
+                            <%= image_tag tweet.image.url, class: "card-img-top" %>
+                        <% end %>
+
                     <p class="card-text"><%= tweet.content %></p>
                     <% if user_signed_in? %>
-                    <div class="btn-group" role="group">
+                    <div class="btn-group text-left" role="group">
                 <%# いいね機能ボタン %>
                         <% if current_user.already_liked?(tweet) %>
                         <div class="btn btn-outline-success">
-                            <%= link_to 'いいね解除', tweet_like_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
+                            <%= link_to 'Un like', tweet_like_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
                             <%= tweet.likes.count %>
                         </div>
                         <% else %>
                         <div class="btn btn-outline-success">
-                            <%= link_to 'いいね', tweet_likes_path(id: tweet.id, tweet_id: tweet.id), method: :post %>
+                            <%= link_to 'Like', tweet_likes_path(id: tweet.id, tweet_id: tweet.id), method: :post %>
                             <%= tweet.likes.count %>
                         </div>
                         <% end %>
                 <%# お気に入り機能ボタン %>
                         <% if current_user.already_favorited?(tweet) %>
                         <div class="btn btn-outline-success">
-                            <%= link_to 'お気に入り解除', tweet_favorite_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
+                            <%= link_to 'Un star', tweet_favorite_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
                             <%= tweet.favorites.count %>   
                         </div>            
                         <% else %>
                         <div class="btn btn-outline-success">
-                            <%= link_to 'お気に入り', tweet_favorites_path(id: tweet.id, tweet_id: tweet.id), method: :post %>
+                            <%= link_to 'Star', tweet_favorites_path(id: tweet.id, tweet_id: tweet.id), method: :post %>
                             <%= tweet.favorites.count %>
                         </div>
                         <% end %>
@@ -125,7 +156,11 @@
                     <% end %>
                 </div>
                 </div>
-            <% end %>    
+            <% end %>
+            <%# Jqueryの動きを出すためのコード3種 %>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>    
         </div>
     </div>
     <br>

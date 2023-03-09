@@ -16,7 +16,7 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-right text-middle">
                             <%= link_to "編集", edit_memo_path(memo), class: "dropdown-item text-success", remote: true %>
-                            <%= link_to "削除", memo, method: :delete, class: "dropdown-item text-danger", remote: true, data: { confirm: 'Are you sure?' } %>
+                            <%= link_to "削除", memo, method: :delete, class: "dropdown-item text-danger", remote: true, data: { confirm: '削除しますか？' } %>
                         </div>
                     </div>
                 </div>

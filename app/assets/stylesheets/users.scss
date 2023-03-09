@@ -51,3 +51,30 @@
     width: 100%;
     height: 20px;
 }
+
+// ul {
+    // display: block;
+    // list-style: none;
+// }
+// li {
+    // display: block;
+    // list-style: none;
+// }
+
+ul{
+    position: absolute;  /*要素の位置決め*/
+    top    : 12px;
+    right  : 0;
+    
+}
+
+li{
+    list-style-type : none;    /* 黒点を消す*/
+    background      : #fff;  /* 背景*/
+    min-width       :  5.2em;
+    max-width       :  5.4em;
+    white-space     : nowrap; /*余白、ホワイトスペース*/
+    text-overflow   : clip;
+    border: 1px solid #28a745; /* 項目上側の枠線(緑色で1pxの実線) */
+    font-weight: bold;         /* 太字にする */
+}
