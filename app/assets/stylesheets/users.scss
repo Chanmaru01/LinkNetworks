@@ -52,14 +52,6 @@
     height: 20px;
 }
 
-// ul {
-    // display: block;
-    // list-style: none;
-// }
-// li {
-    // display: block;
-    // list-style: none;
-// }
 
 ul{
     position: absolute;  /*要素の位置決め*/
@@ -77,4 +69,25 @@ li{
     text-overflow   : clip;
     border: 1px solid #28a745; /* 項目上側の枠線(緑色で1pxの実線) */
     font-weight: bold;         /* 太字にする */
+}
+
+.position {
+    position:absolute;
+    left: 1.1em;
+    color:#ff00ae;
+}
+.screen {
+    position:absolute;
+    left: 1.1em;
+    color:#f0ff24;
+}
+
+.flex {
+    display: flex;
+}
+.left {
+    width: 90%;
+}
+.right {
+    width: 10%;
 }
