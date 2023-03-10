@@ -2,12 +2,12 @@
     <nav class="navbar navbar-expand-sm navbar-dark bg-success">
         <%# もしユーザーがログインしているならば投稿一覧画面へ %>
         <%  if user_signed_in?  %>
-            <span class="navbar-brand mb-4 h5"><%= link_to 'LiNex', tweets_path, class: "navbar-brand" %></span>
+            <span class="navbar-brand mb-0 h1"><%= link_to 'LiNex', tweets_path, class: "navbar-brand" %></span>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             </button>
         <%# ログインしていないのならアプリ説明画面へ %>
         <% else %>
-            <span class="navbar-brand mb-4 h5"><%= link_to 'LiNex', root_path, class: "navbar-brand" %></span>
+            <span class="navbar-brand mb-0 h1"><%= link_to 'LiNex', root_path, class: "navbar-brand" %></span>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             </button>
         <% end %>
@@ -16,37 +16,37 @@
         <%# もしユーザーがログインしているならば下記を表示 %>
         <%  if user_signed_in?  %>
             <div class="navbar-nav">
-                <tdropdown- class="nav-item active">
-                    <%= link_to "プロフィール", user_path(current_user.id) , class: "nav-link" %>
-                </tdropdown->
+                <a class="nav-item active">
+                    <%= link_to "プロフィール", user_path(current_user.id) , class: "nav-link text-light" %>
+                </a>
 
-                <td class="nav-item active">
-                    <%= link_to "新規投稿", new_tweet_path, class: "nav-link" %>
-                </td>
+                <a class="nav-item active">
+                    <%= link_to "新規投稿", new_tweet_path, class: "nav-link text-light" %>
+                </a>
 
-                <td class="nav-item active">
-                    <%= link_to "Todo", memos_path, class: "nav-link" %>
-                </td>
+                <a class="nav-item active">
+                    <%= link_to "Todo", memos_path, class: "nav-link text-light" %>
+                </a>
                 
                 <%# <td class="nav-item active"> %>
                     <%# <%= link_to "設定", user_password_path, class: "nav-link" %>
                 <%# </td> %>
 
-                <td class="nav-item">
+                <a class="nav-item text-right ml-5 pl-5">
                     <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
-                </td>
+                </a>
             </div>
         <%# ログインしていないのなら下記を表示 %>
         <% else %>
             <div class="navbar-nav">
 
-                <td class="nav-item active">
-                    <%= link_to "サインアップ", new_user_registration_path, class: "nav-link" %>
-                </td>
+                <a class="nav-item active">
+                    <%= link_to "サインアップ", new_user_registration_path, class: "nav-link text-light" %>
+                </a>
 
-                <td class="nav-item active">
-                    <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
-                </td>
+                <a class="nav-item active">
+                    <%= link_to "ログイン", new_user_session_path, class: "nav-link text-light" %>
+                </a>
         <% end %>
             </div>
         </div>

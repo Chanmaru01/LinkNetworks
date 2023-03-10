@@ -1,24 +1,27 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.title {
-    font-size: 150%;
+.flame {
     font-weight: bold;/* フォント太さ */
-    padding-top: 1em;
-    padding-bottom: 1em;
-    margin-bottom: 2em;
-    border-top: 3px solid #3f9613;/* 上の線 */
-    border-bottom: 3px solid #409614;/* 下の線 */
-    text-align: center;/* テキストの位置 */
-    color: #28a745;
-}
+    padding: 1em;
+    margin-bottom: 0.7em;
+    border: 4px double #619f60;/* 線 */
+    border-radius: 20px;/* 角丸 */
+    color: #62a061;/* フォント色 */
+    }
 
 .name {
-    text-align: center;
+    font-weight: bold;
+    background: linear-gradient(transparent 30%, #a7d6ff 120%);
 }
 
-.edit {
-    text-align: right;
+.P {
+    position: relative;
+}
+.P div.card {
+    position: absolute;
+    right: 73px;
+    top: -110px;
 }
 
 .col {
@@ -27,7 +30,7 @@
     background-color: #28a745;
     height: 30px;
 }
-
+// タグタイトル
 h5 {
     position: relative;
     display: inline-block;
@@ -57,24 +60,7 @@ h5:after {
     background: #fff;
 }
 
-
-
-.pr {
-    color: white;
-    text-align: center;
-    background-color: #28a745;
-    width: 100%;
-    height: 20px;
-}
-
 // 投稿一覧
-.A {
-    
-}
-.B {
-
-}
-
 ul{
     position: absolute;  /*要素の位置決め*/
     top    : 12px;
@@ -92,21 +78,19 @@ li{
     border: 0.8px solid #28a745; /* 項目上側の枠線(緑色で1pxの実線) */
     font-weight: bold;         /* 太字にする */
 }
-
+// ❤の中にある＃
 .position {
     position:absolute;
     left: 1.1em;
     color:#ff00ae;
 }
+// starの中にある＃
 .screen {
     position:absolute;
     left: 1.1em;
     color:#f0ff24;
 }
 
-.flex {
-    display: flex;
-}
 .left {
     width: 90%;
 }

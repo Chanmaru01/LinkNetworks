@@ -1,43 +1,38 @@
-<div class="title">プロフィール</div>
-
-    <div class="box">
-        <%# ユーザーネーム %>
-            <div class="name"><h4><%= @user.user_name %></h4></div>
-        <%# プロフィール編集右固定 %>
-            <div class="edit">
-                <%= link_to 'プロフィール編集', edit_user_registration_path, class: "btn btn-outline-success" %>
-            </div>
-
-        <div class="flex">
-            <div class="l">
+<br>
+    <div class="flame">
+        <div class="d-flex ml-3 pt-2">
                 <% if @user.image? %>
-                    <%= image_tag @user.image.url, class: "rounded-circle", :size =>'180x180' %>
+                    <%= image_tag @user.image.url, class: "rounded-circle", :size =>'160x160' %>
                 <% else %>
                     <%# 画像指定がない場合デフォルト画像 %>
-                    <%= image_tag 'default_profile_user_icon.png', class: "rounded-circle", :size =>'180x180' %>
+                    <%= image_tag 'default_profile_user_icon.png', class: "rounded-circle", :size =>'160x160' %>
                 <% end %>
+            <%# ユーザーネーム %>
+            <div class="w-50 ml-0 pr-5"><h4 class="name ml-5 mr-0 pt-2 text-left"><%= @user.user_name %></h4></div>
+            <%# プロフィール編集右固定 %>
+            <div class="text-right w-50">
+                <%= link_to 'プロフィール編集', edit_user_registration_path, class: "btn btn-outline-success" %>
             </div>
-        <%# <%= @user.email %>
-        <br>
-        <br>
-            <div class="t">
-                <div class="card mb-3"style="max-width: 1000px;">
-                    <div class="card-body">
-                        <div class="pr"><p>自己紹介</p></div>
-                        <p><%= @user.pr%></p>
-                    </div>
+        </div>
+        <div class="P w-100 ml-5 pl-5"><%# <%= @user.email %>
+            <div class="card border-success w-75 pl-0">
+                <div class="card-header bg-success py-0">
+                    <p class="text-light my-0">ひとこと</p>
+                </div>
+                <div class="card-body">    
+                    <p class="pb-5 mb-3"><%= @user.pr%></p>
                 </div>
             </div>
-        </div>      
+        </div>
+        <br>
+        <br>
     </div>
-<br>
-<br>
         <div class="d-flex">
             <div class="A w-50 mb-0 mr-4">
-                    <h5 class="bg-success text-light pl-4 pr-5 mb-3 ">お気に入り投稿 <span class='fas fa-star' style='color:#f0ff24'></span></h5>
+                    <h5 class="bg-success text-light font-weight-bold pl-4 pr-5 mb-3 ">お気に入り投稿 <span class='fas fa-star' style='color:#f0ff24'></span></h5>
             </div>
             <div class="B w-50 mb-0 ml-1">
-                    <h5 class="bg-success text-light pl-4 pr-5 mb-3"><%= @user.user_name %>の投稿 <span class='fas fa-book' style='color:#ffffff'></ｓ></h5>
+                    <h5 class="bg-success text-light font-weight-bold pl-4 pr-5 mb-3"><%= @user.user_name %>の投稿 <span class='fas fa-book' style='#00eeff'></span></h5>
             </div>
         </div>
     <div class="row">
@@ -46,14 +41,14 @@
             <% @user.favorited_tweets.each do |tweet| %>
                 <div class="card border-success mb-3">
                     <div class="card-header bg-success px-6 py-0 text-right">
-                        <div class="flex">
-                            <div class="left"><h6 class="card-title pt-1 text-left text-light"><%= tweet.user.user_name %></h6></div>
+                        <div class="d-flex">
+                            <div class="left"><h6 class="card-title pt-1 text-left text-light font-weight-bold"><%= tweet.user.user_name %></h6></div>
                             <%# dropdowe-menuがリンクに飛ばされた後、何らかの原因で使用できないので 代換えしている %>
                             <div class="left">
                                 <details>
                                     <summary  class='fas fa-ellipsis-v pt-2 text-white'></summary>
                                         <ul class="mt-4 p-0 text-center">
-                                                <li class="py-1 mt-1"><%= link_to '詳細', tweet_path(tweet), class: "text-success" %></li>
+                                                <li class="py-1 mt-0"><%= link_to '詳細', tweet_path(tweet), class: "text-success" %></li>
                                             <%# 編集、削除ボタンの制御 %>
                                             <% if user_signed_in? && tweet.user == current_user %>
                                                 <li class="py-1"><%= link_to '編集', edit_tweet_path(tweet), class: "text-success" %></li>
