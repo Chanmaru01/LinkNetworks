@@ -28,21 +28,36 @@
     height: 30px;
 }
 
-.h5 {
-    text-align: center;
+h5 {
+    position: relative;
+    display: inline-block;
+    // height: 64px;
+    margin-left: 33px;
+    // padding: 1rem 2rem 1rem 3rem;
+    color: #fff;
+    background: #28a745;
 }
-// 画像と自己紹介文の横並び
-.flex{
-    display: flex;
+h5:before {
+    position: absolute;
+    top: 0;
+    left: -19px;
+    content: '';
+    border-width: 11px 16px 14px 0;
+    border-style: solid;
+    border-color: transparent #28a745 transparent transparent;
+}
+h5:after {
+    position: absolute;
+    top: calc(50% - 7px);
+    left: -9px;
+    width: 14px;
+    height: 13px;
+    content: '';
+    border-radius: 50%;
+    background: #fff;
 }
 
-.right{
-    width: 1000px;
-}
-.left{
-    width: 200px;
-    padding-bottom: 0;
-}
+
 
 .pr {
     color: white;
@@ -52,6 +67,13 @@
     height: 20px;
 }
 
+// 投稿一覧
+.A {
+    
+}
+.B {
+
+}
 
 ul{
     position: absolute;  /*要素の位置決め*/
@@ -67,7 +89,7 @@ li{
     max-width       :  5.4em;
     white-space     : nowrap; /*余白、ホワイトスペース*/
     text-overflow   : clip;
-    border: 1px solid #28a745; /* 項目上側の枠線(緑色で1pxの実線) */
+    border: 0.8px solid #28a745; /* 項目上側の枠線(緑色で1pxの実線) */
     font-weight: bold;         /* 太字にする */
 }
 
