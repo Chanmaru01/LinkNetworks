@@ -5,14 +5,22 @@
     font-weight: bold;/* フォント太さ */
     padding: 1em;
     margin-bottom: 0.7em;
-    border: 4px double #619f60;/* 線 */
-    border-radius: 20px;/* 角丸 */
+    // border: 4px double #619f60;/* 線 */
+    // border-radius: 20px;/* 角丸 */
     color: #62a061;/* フォント色 */
+    background: linear-gradient(transparent 0%, #a7d6ff 60%);
     }
+
+.over {
+    display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	overflow: hidden;
+
+}
 
 .name {
     font-weight: bold;
-    background: linear-gradient(transparent 30%, #a7d6ff 120%);
 }
 
 .P {

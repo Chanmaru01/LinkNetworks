@@ -1,5 +1,4 @@
-<br>
-    <div class="flame">
+    <div class="flame card">
         <div class="d-flex ml-3 pt-2">
                 <% if @user.image? %>
                     <%= image_tag @user.image.url, class: "rounded-circle", :size =>'160x160' %>
@@ -10,24 +9,23 @@
             <%# ユーザーネーム %>
             <div class="w-50 ml-0 pr-5"><h4 class="name ml-5 mr-0 pt-2 text-left"><%= @user.user_name %></h4></div>
             <%# プロフィール編集右固定 %>
-            <div class="text-right w-50">
+            <div class="text-right w-25 ml-5">
                 <%= link_to 'プロフィール編集', edit_user_registration_path, class: "btn btn-outline-success" %>
             </div>
         </div>
         <div class="P w-100 ml-5 pl-5"><%# <%= @user.email %>
             <div class="card border-success w-75 pl-0">
                 <div class="card-header bg-success py-0">
-                    <p class="text-light my-0">ひとこと</p>
+                    <p class="text-light my-0">ひ と こ と</p>
                 </div>
-                <div class="card-body">    
-                    <p class="pb-5 mb-3"><%= @user.pr%></p>
+                <div class="card-body p-1 pl-3 pr-2 mb-0">    
+                    <p class="over"><%= @user.pr%></p>
                 </div>
             </div>
         </div>
         <br>
-        <br>
     </div>
-        <div class="d-flex">
+        <div class="d-flex mt-3">
             <div class="A w-50 mb-0 mr-4">
                     <h5 class="bg-success text-light font-weight-bold pl-4 pr-5 mb-3 ">お気に入り投稿 <span class='fas fa-star' style='color:#f0ff24'></span></h5>
             </div>
