@@ -1,26 +1,76 @@
-<p class="title-1">投稿詳細</p>
-<div class="card mb-3">
-
-    <% if @tweet.image? %>
-                <%= image_tag @tweet.image.url, :size =>'420x500' %>
-            <% end %>
-    <div class="card-body">
-        <h6 class="card-title"><%= @tweet.user.user_name %></h6>
-        <p class="card-text"><%= @tweet.content %></p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+<div class="card mb-3 border-success">
+<div class="card-header bg-success text-light d-flex">
+    <%# ユーザーネーム %>
+    <div class="w-100"><h3 class="card-title pt-0 text-center text-light font-weight-bold"><%= @tweet.user.user_name %></h3></div>
+    <%# dropdowe-menuがリンクに飛ばされた後、何らかの原因で使用できないので 代換えしている %>
+    <div class="w-0">
+        <details>
+            <summary  class='fas fa-ellipsis-v h4 pt-1 pr-0 text-white d-block'></summary>
+            <ul class="mt-2 pt-3 p-0 text-center">
+                <%# 編集、削除ボタンの制御 %>
+                <% if user_signed_in? && @tweet.user == current_user %>
+                    <li class="h4 py-1 my-0"><%= link_to '編集', edit_tweet_path(@tweet), class: "text-success" %></li>
+                    <li class="h4 py-1 my-0"><%= link_to '削除', @tweet, method: :delete, class: "text-danger", remote: true, data: { confirm: '削除しますか？' } %></li>
+                <% end %>
+            </ul>
+        </details>
     </div>
-
 </div>
-    <h6> コメント</h6>
-    <%= form_with(model:[@tweet, @comment], method: :post) do |f| %>
-        <%= f.text_area :comment_content %>
-        <%= f.hidden_field :tweet_id, value: @tweet.id %>
-        <%= f.submit '送信' %>
+    <% if @tweet.image? %>
+        <%= image_tag @tweet.image.url,  class: "card-img-top", size: "400x520" %>
     <% end %>
-
-    <h5> コメント一覧</h5>
-    <%# コメントの内容が表示される %>
-    <% @comments.each do |comment| %>
-        <%= comment.comment_content %>
-    <% end %>
-    <%= link_to 'ホーム', root_path %>
+    <div class="card-body border-success pl-5">
+        <p class="card-text font-weight-bold"><%= @tweet.content %></p>
+    </div>
+    <div class="card-footer bg-success pl-5">
+        <h6 class="text-light font-weight-bold"> コメント</h6>
+        <div class="d-flex">
+            <%= form_with(model:[@tweet, @comment], method: :post) do |f| %>
+                <%= f.text_area :comment_content %>
+                <%= f.hidden_field :tweet_id, value: @tweet.id %>
+                <%= f.submit '送信', class: "bg-light border-light" %>
+            <% end %>
+            <% if user_signed_in? %>
+                <div class="btn-group text-right" role="group">
+                <%# いいね機能ボタン %>
+                <% if current_user.already_liked?(@tweet) %>
+                    <div class="btn btn-light border-success">
+                    <%= link_to '#', tweet_like_path(id: @tweet.id, tweet_id: @tweet.id), method: :delete, class: "position" %>
+                        <span class='fas fa-heart fa-lg' style='color:#ff00ae'></span>
+                    <%= @tweet.likes.count %>
+                    </div>
+                <% else %>
+                    <div class="btn btn-light border-success">
+                    <%= link_to "#", tweet_likes_path(id: @tweet.id, tweet_id: @tweet.id), method: :post, class: "position" %>
+                        <span class='fas fa-heart fa-lg' style='color:#ff00ae'></span>
+                    <%= @tweet.likes.count %>
+                    </div>
+                <% end %>
+                <%# お気に入り機能ボタン %>
+                <% if current_user.already_favorited?(@tweet) %>
+                    <div class="btn btn-light border-success">
+                    <%= link_to '#', tweet_favorite_path(id: @tweet.id, tweet_id: @tweet.id), method: :delete, class: "screen" %>
+                        <span class='fas fa-star fa-lg' style='color:#f0ff24'></span>
+                    <%= @tweet.favorites.count %>   
+                    </div>            
+                <% else %>
+                    <div class="btn btn-light border-success">
+                    <%= link_to '#', tweet_favorites_path(id: @tweet.id, tweet_id: @tweet.id), method: :post, class: "screen" %>
+                        <span class='fas fa-star fa-lg' style='color:#f0ff24'></span>
+                    <%= @tweet.favorites.count %>
+                    </div>
+                <% end %>
+                </div>
+            <% end %>
+        </div>
+        <h6 class="text-light font-weight-bold"> コメント一覧</h6>
+            <%# コメントの内容が表示される %>
+            <% @comments.each do |comment| %>
+            <div class="card">
+                <%= @tweet.user.user_name %>
+                <br>
+                <%= comment.comment_content %>
+            <% end %>
+            </div>
+</div>
+</div>

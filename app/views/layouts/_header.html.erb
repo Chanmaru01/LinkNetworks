@@ -11,7 +11,10 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             </button>
         <% end %>
-    
+        <div class="d-flex pl-5">
+            <a href="#" onclick="history.back();"><i class='fas fa-arrow-left fa-md' style='color:#ffffff'>BACK</i></a>
+            <%# <a href="#" onclick="history.forward();"><i class='fas fa-arrow-right fa-md' style='color:#ffffff'></i></a> %>
+        </div>
         <div class="navbar-collapse justify-content-end" id="navbarNavAltMarkup">
         <%# もしユーザーがログインしているならば下記を表示 %>
         <%  if user_signed_in?  %>
@@ -32,7 +35,7 @@
                     <%# <%= link_to "設定", user_password_path, class: "nav-link" %>
                 <%# </td> %>
 
-                <a class="nav-item text-right ml-5 pl-5">
+                <a class="nav-item text-right ml-5 pr-5">
                     <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
                 </a>
             </div>
