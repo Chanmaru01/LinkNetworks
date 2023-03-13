@@ -15,17 +15,7 @@
         <div class="navbar-collapse justify-content-end" id="navbarNavAltMarkup">
         <%# もしユーザーがログインしているならば下記を表示 %>
         <%  if user_signed_in?  %>
-                            <div class="navbar-nav">
-                <a class="nav-item active">
-                    <div class="pt-2 pr-5 mr-5">
-                        <%# 検索機能追加 %>
-                        <%= search_form_for @q, url: search_tweets_path do |f| %>
-                            <%= f.label :content_cont, "投稿", class: "text-light" %>
-                            <%= f.search_field :content_cont, class: "btn btn-light btn-sm" %>
-                            <%= f.submit "検索", class: "btn btn-light btn-sm text-success" %>
-                        <% end %>
-                    </div>
-                </a>
+            <div class="navbar-nav">
                 <a class="nav-item active">
                     <%= link_to "プロフィール", user_path(current_user.id) , class: "nav-link text-light" %>
                 </a>

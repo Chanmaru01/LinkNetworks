@@ -16,6 +16,8 @@ class MemosController < ApplicationController
   def edit
   end
 
+  def show
+  end
   # POST /memos
   def create
     @memo = current_user.memos.new(memo_params)

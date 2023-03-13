@@ -3,7 +3,7 @@
         <div class="modal-content">
         <%= form_with(model: todo, url: [memo, todo], remote: true, class: "") do |form| %>
             <div class="modal-header">
-            <h5 class="modal-title" id="memoModal">並びかえ</h5>
+            <h4 class="modal-title text-success" id="memoModal">並びかえ</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -31,16 +31,16 @@
                 </div>
                 </div>
             </div>
-            <div class="field">
+            <div class="fiel text-success">
                 <%= form.label :position, class: "d-none"  %>
                 <%= form.select  :position,
                 (1..memo.todos.length).map {|i| [i, i] },
                 { selected: memo.todos.index(todo) + 1 },
-                class: "d-inline w-auto" %>番目に移動
+                class: "d-inline w-auto text-success" %>番目に移動
             </div>
             <div class="modal-footer actions">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                <%= form.submit %>
+                <%= form.submit "更新" %>
             </div>
             </div>
         <% end %>

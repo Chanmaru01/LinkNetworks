@@ -10,15 +10,27 @@
 
 
 .title-1 {
-    font-size: 1.5em;/* フォントサイズ */
-    font-weight: bold;/* フォント太さ */
-    // padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    margin-bottom: 1em;
-    // border-top: 3px solid #28A745;/* 上の線 */
-    border-bottom: 4px solid #28A745;/* 下の線 */
-    color: #28A745;/* フォント色 */
-    text-align: center;/* テキストの位置 */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 35px;
+	text-align: center;
+    color: #28A745;
+}
+
+.title-1::before,
+.title-1::after {
+	content: '';
+	width: 120px;
+	height: 5px;
+	background-color: #28A745
+}
+
+.title-1::before {
+	margin-right: 20px;
+}
+.title-1::after {
+	margin-left: 20px;
 }
 
 // .mixbox {
