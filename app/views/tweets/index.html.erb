@@ -1,28 +1,4 @@
-<br>
-    <div class="title-1">投稿一覧</div>
-    <%# 検索と新規投稿のグループ化 %>
-    <div class="mixbox">
-      <div class="d-flex bd-highlight">
-        <div class="p-2 w-50 bd-highlight">
-          <%# 検索機能追加 %>
-          <h5>
-            <%= search_form_for @q, url: search_tweets_path do |f| %>
-            <%= f.label :content_cont, '投稿' %>
-            <%= f.search_field :content_cont, class: "btn btn-light btn-sm" %>
-            <%= f.submit '検索', class: "btn btn-light btn-sm" %>
-          </h5>
-          <% end %>
-        </div>
-
-        <%# 新規投稿 %>
-        <div class="p-2 flex-shrink-1 bd-highlight">
-            <h5><% if user_signed_in? %>
-                <%= link_to '新規投稿', new_tweet_path, class: "btn btn-light btn-sm" %>
-            </h5><% end %>
-        </div>
-      </div>
-    </div>
-
+<div class="title-1">投稿一覧</div>
 <%# 画面スクロール 修正できたためコメントアウト %>
 <%# <div class="scroll"> %>
     <div class="row">
@@ -40,11 +16,11 @@
                       <% end %>
                     </div>
                     <%# ユーザーネーム %>
-                    <div class="left"><h6 class="card-title h5 pt-3 pl-3 text-left text-light font-weight-bold"><%= tweet.user.user_name %></h6></div>
+                    <div class="w-75"><h6 class="card-title h5 pt-3 pl-3 text-left text-light font-weight-bold"><%= tweet.user.user_name %></h6></div>
                     <%# dropdowe-menuがリンクに飛ばされた後、何らかの原因で使用できないので 代換えしている %>
-                    <div class="left">
+                    <div class="w-25">
                       <details>
-                        <summary  class='fas fa-ellipsis-v h4 pt-2 pr-1 text-white d-block'></summary>
+                        <summary  class='fas fa-ellipsis-v h4 pt-1 pr-1 text-white d-block'></summary>
                         <ul class="mt-2 pt-3 p-0 text-center">
                               <li class="h5 py-1 my-0"><%= link_to '詳細', tweet_path(tweet), class: "text-success" %></li>
                             <%# 編集、削除ボタンの制御 %>
@@ -61,7 +37,7 @@
               <div class="card-body p-3 overflow-auto">
                 <%# 画像 %>
                 <% if tweet.image? %>
-                    <%= image_tag tweet.image.url, class: "card-img-top mb-3" %>
+                    <%= image_tag tweet.image.url, class: "card-img-top mb-3", style: "height:14em" %>
                 <% end %>
                 <%# 投稿内容 %>
                 <p class="card-text"><%= tweet.content %></p>
@@ -105,13 +81,7 @@
         </div>
       <% end %>
     </div>
-    <%# 改行 %>
-    <br>
-
-    <button class="btn btn-outline-success">
-      <a href="#" id="page-top">TOP→</a>
+    <button class="btn btn-outline-success mt-3">
+      <a href="#" id="page-top" class="text-success font-weight-bold">TOP→</a>
     </button>
-
-    <%# 改行 %>
-    <br>
-<%# </div> %>
+<%# </div>  %>

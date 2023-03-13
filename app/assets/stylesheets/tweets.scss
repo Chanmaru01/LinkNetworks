@@ -10,28 +10,25 @@
 
 
 .title-1 {
-    font-size: 1.0em;/* フォントサイズ */
+    font-size: 1.5em;/* フォントサイズ */
     font-weight: bold;/* フォント太さ */
-    padding-top: 1em;
-    padding-bottom: 1em;
-    margin-bottom: 2em;
-    border-top: 3px solid #28A745;/* 上の線 */
-    border-bottom: 3px solid #28A745;/* 下の線 */
+    // padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    // border-top: 3px solid #28A745;/* 上の線 */
+    border-bottom: 4px solid #28A745;/* 下の線 */
     color: #28A745;/* フォント色 */
     text-align: center;/* テキストの位置 */
 }
 
-.mixbox {
-    font-size: 0.8em;/* フォントサイズ */
-    font-weight: bold;/* フォント太さ */
-    padding-top: .5em;
-    padding-bottom: .1em;
-    padding-left: 2em;
-    margin-bottom: 2em;
-    background-color: #28A745;/* 背景色 */
-    border-radius:15px;/* 角丸 */
-    color: #ffffff;/* フォント色 */
-    // display: flex;/* mixboxの要素内のものを横並びする*/
-    
-}
+// .mixbox {
+//     font-size: 0.8em;/* フォントサイズ */
+//     font-weight: bold;/* フォント太さ */
+//     padding-top: .5em;
+//     padding-bottom: .1em;
+//     padding-left: 2em;
+//     margin-bottom: 2em;
+//     background-color: #28A745;/* 背景色 */
+//     border-radius:15px;/* 角丸 */
+// }
 
