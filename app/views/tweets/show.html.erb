@@ -31,16 +31,16 @@
                 <%= f.submit '送信', class: "bg-light border-light" %>
             <% end %>
             <% if user_signed_in? %>
-                <div class="btn-group text-right" role="group">
+                <div class="btn-group text-right pt-3" role="group">
                 <%# いいね機能ボタン %>
                 <% if current_user.already_liked?(@tweet) %>
-                    <div class="btn btn-light border-success">
+                    <div class="btn btn-light border-success pt-1 mb-5">
                     <%= link_to '#', tweet_like_path(id: @tweet.id, tweet_id: @tweet.id), method: :delete, class: "position" %>
                         <span class='fas fa-heart fa-lg' style='color:#ff00ae'></span>
                     <%= @tweet.likes.count %>
                     </div>
                 <% else %>
-                    <div class="btn btn-light border-success">
+                    <div class="btn btn-light border-success pt-1 mb-5">
                     <%= link_to "#", tweet_likes_path(id: @tweet.id, tweet_id: @tweet.id), method: :post, class: "position" %>
                         <span class='fas fa-heart fa-lg' style='color:#ff00ae'></span>
                     <%= @tweet.likes.count %>
@@ -48,13 +48,13 @@
                 <% end %>
                 <%# お気に入り機能ボタン %>
                 <% if current_user.already_favorited?(@tweet) %>
-                    <div class="btn btn-light border-success">
+                    <div class="btn btn-light border-success pt-1 mb-5">
                     <%= link_to '#', tweet_favorite_path(id: @tweet.id, tweet_id: @tweet.id), method: :delete, class: "screen" %>
                         <span class='fas fa-star fa-lg' style='color:#f0ff24'></span>
                     <%= @tweet.favorites.count %>   
                     </div>            
                 <% else %>
-                    <div class="btn btn-light border-success">
+                    <div class="btn btn-light border-success pt-1 mb-5">
                     <%= link_to '#', tweet_favorites_path(id: @tweet.id, tweet_id: @tweet.id), method: :post, class: "screen" %>
                         <span class='fas fa-star fa-lg' style='color:#f0ff24'></span>
                     <%= @tweet.favorites.count %>
@@ -67,9 +67,12 @@
             <%# コメントの内容が表示される %>
             <% @comments.each do |comment| %>
             <div class="card">
-                <%= @tweet.user.user_name %>
-                <br>
-                <%= comment.comment_content %>
+                <div class="pl-3">
+                    <%= @tweet.user.user_name %>
+                </div>
+                <div class="pl-2">
+                    <%= comment.comment_content %>
+                </div>
             <% end %>
             </div>
 </div>

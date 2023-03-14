@@ -1,5 +1,7 @@
-<div class="title-1">投稿編集</div>
-<%= render 'form', tweet: @tweet %>
-<div class="text-left">
-    <%= link_to '戻 る', tweets_path, class: "btn btn-outline-success" %>
+<div class="card m-5 h-75 border-success">
+<div class="card-header title-1 border-success">投稿編集</div>
+    <div class="card-body p-4">
+        <%= render 'form', tweet: @tweet %>
+        <%= link_to '戻る', tweets_path, class: "btn btn-outline-success" %>
+    </div>
 </div>

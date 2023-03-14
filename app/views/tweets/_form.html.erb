@@ -11,12 +11,12 @@
   <% end %>
   <%# 画像アップロード %>
   <div class="field form-group">
-    <%= form.label "・" %>
+    <%= form.label "#", class: "text-light" %>
     <%= form.file_field :image %>
   </div>
 <%# 投稿内容 %>
   <div class="field form-group">
-    <h5><%= form.label "投稿内容" %></h5>
+    <h6><%= form.label "投稿内容", class: "text-success" %></h6>
         <%= form.text_field :content, id: :tweet_content, class:"form-control" %>
   </div>
 
