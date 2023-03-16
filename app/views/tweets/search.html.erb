@@ -1,71 +1,97 @@
-
-    <div class="title-1">投稿一覧</div>
-        <%# 検索機能追加 %>
-    
-        <div class="text-right">
+<div class="d-flex ml-4">
+    <div class="title-1 mb-2 ml-5 pl-5 mr-5 pr-5">投稿一覧</div>
+        <div class="pt-2 pl-5 ml-5">
+            <%# 検索機能追加 %>
             <%= search_form_for @q, url: search_tweets_path do |f| %>
-                <%= f.label :content_cont, '投稿' %>
-                <%= f.search_field :content_cont %>
-                <%= f.submit '検索' %>
+                <%= f.label :content_cont, "投稿", class: "text-success pr-2" %>
+                <%= f.search_field :content_cont, class: "btn btn-light btn-sm border-success" %>
+                <%= f.submit "検索", class: "btn btn-light btn-md text-success" %>
             <% end %>
         </div>
-    <div class="title-2">
-        <% if user_signed_in? %>
-            <%= link_to '新規投稿', new_tweet_path %>
-        <% end %>
-    </div>
-    <%# 画面スクロール %>
-    <div class="scroll">
-
+</div>
+<%# 画面スクロール 修正できたためコメントアウト %>
+<%# <div class="scroll"> %>
+<div class="row pl-2 pr-2">
     <% @results.each do |tweet| %>
-        <div class="card mb-3">
-            <div class="card-body">
-                <p class="card-text"><%= tweet.user.user_name %></p>
-            <%# 編集、削除ボタンの制御 %>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <% if user_signed_in? && tweet.user == current_user %>
-                    <div class="text-right">
-                        <%= link_to '編集', edit_tweet_path(tweet), class: "btn btn-outline-success" %>
-                        <%= link_to '削除', tweet, method: :delete, class: "btn btn-outline-danger" %>
+        <div class="col-4 pr-1 pl-1 pb-2">
+        <div class="card border-success" style="height: 25em">
+            <div class="card-header bg-success px-2 py-1 text-right">
+                <div class="d-flex">
+                <%# ユーザー画像 %>
+                <div class="image">
+                    <% if tweet.user.image? %>
+                        <%= image_tag tweet.user.image.url, class: "rounded-circle", :size =>'70x65' %>
+                    <% else %>
+                        <%= image_tag 'default_profile_user_icon.png', class: "rounded-circle bg-light", :size =>'70x65' %>
+                    <% end %>
+                </div>
+                <%# ユーザーネーム 投稿してる他のユーザー詳細にアクセスできる %>
+                <div class="pl-2 pt-3 text-left"><%= link_to tweet.user.user_name, user_path(tweet.user) , class: "card-title h5 pt-3 text-left text-light font-weight-bold" %></div>
+                <%# dropdowe-menuがリンクに飛ばされた後、何らかの原因で使用できないので 代換えしている %>
+                <div class="Po">
+                    <details>
+                    <summary  class='fas fa-ellipsis-v h4 pt-1 pr-0 text-white d-block'></summary>
+                    <ul class="mt-2 pt-3 p-0 text-center">
+                            <li class="h5 py-1 my-0"><%= link_to '詳細', tweet_path(tweet), class: "text-success" %></li>
+                        <%# 編集、削除ボタンの制御 %>
+                        <% if user_signed_in? && tweet.user == current_user %>
+                            <li class="h5 py-1 my-0"><%= link_to '編集', edit_tweet_path(tweet), class: "text-success" %></li>
+                            <li class="h5 py-1 my-0"><%= link_to '削除', tweet, method: :delete, class: "text-danger", remote: true, data: { confirm: '削除しますか？' } %></li>
+                        <% end %>
+                    </ul>
+                    </details>
+                </div>
+                </div>
+            </div>
+            <%# Body %>
+            <div class="card-body p-3 overflow-auto">
+                <%# 画像 %>
+                <% if tweet.image? %>
+                    <%= image_tag tweet.image.url, class: "card-img-top mb-3", style: "height:14em" %>
+                <% end %>
+                <%# 投稿内容 %>
+                <p class="card-text"><%= tweet.content %></p>
+            </div>
+            <%# Fooyer %>
+            <div class="card-footer bg-light border-light pb-0 pt-0 pl-3 pr-0">
+                <% if user_signed_in? %>
+                <div class="btn-group text-left pb-2" role="group">
+                    <%# いいね機能ボタン %>
+                    <% if current_user.already_liked?(tweet) %>
+                    <div class="btn btn-success border-light">
+                        <%= link_to '#', tweet_like_path(id: tweet.id, tweet_id: tweet.id), method: :delete, class: "position" %>
+                            <span class='fas fa-heart fa-lg' style='color:#ff00ae'></span>
+                        <%= tweet.likes.count %>
+                    </div>
+                    <% else %>
+                    <div class="btn btn-success border-light">
+                        <%= link_to "#", tweet_likes_path(id: tweet.id, tweet_id: tweet.id), method: :post, class: "position" %>
+                            <span class='fas fa-heart fa-lg' style='color:#ff00ae'></span>
+                        <%= tweet.likes.count %>
+                    </div>
+                    <% end %>
+                    <%# お気に入り機能ボタン %>
+                    <% if current_user.already_favorited?(tweet) %>
+                    <div class="btn btn-success border-light">
+                        <%= link_to '#', tweet_favorite_path(id: tweet.id, tweet_id: tweet.id), method: :delete, class: "screen" %>
+                        <span class='fas fa-star fa-lg' style='color:#f0ff24'></span>
+                        <%= tweet.favorites.count %>   
+                    </div>            
+                    <% else %>
+                    <div class="btn btn-success border-light">
+                        <%= link_to '#', tweet_favorites_path(id: tweet.id, tweet_id: tweet.id), method: :post, class: "screen" %>
+                        <span class='fas fa-star fa-lg' style='color:#f0ff24'></span>
+                        <%= tweet.favorites.count %>
                     </div>
                     <% end %>
                 </div>
-                <%# 画像 %>
-                    <% if tweet.image? %>
-                        <%= image_tag tweet.image.url, :size =>'420x500' %>
-                    <% end %>
-                <p class="card-text"><%= tweet.content %></p>
-                
-                    <% if user_signed_in? %>
-                    <div class="btn-group" role="group">
-                <%# いいね機能ボタン %>
-                        <% if current_user.already_liked?(tweet) %>
-                        <div class="btn btn-outline-success">
-                            <%= link_to 'いいね解除', tweet_like_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
-                            <%= tweet.likes.count %>
-                        </div>
-                        <% else %>
-                        <div class="btn btn-outline-success">
-                            <%= link_to 'いいね', tweet_likes_path(id: tweet.id, tweet_id: tweet.id), method: :post %>
-                            <%= tweet.likes.count %>
-                        </div>
-                        <% end %>
-                <%# お気に入り機能ボタン %>
-                        <% if current_user.already_favorited?(tweet) %>
-                        <div class="btn btn-outline-success">
-                            <%= link_to 'お気に入り解除', tweet_favorite_path(id: tweet.id, tweet_id: tweet.id), method: :delete %>
-                            <%= tweet.favorites.count %>   
-                        </div>            
-                        <% else %>
-                        <div class="btn btn-outline-success">
-                            <%= link_to 'お気に入り', tweet_favorites_path(id: tweet.id, tweet_id: tweet.id), method: :post %>
-                            <%= tweet.favorites.count %>
-                        </div>
-                        <% end %>
-                    </div>
-                    <% end %>
+                <% end %>
             </div>
         </div>
-        
+        </div>
     <% end %>
 </div>
+<button class="btn btn-outline-success mt-3">
+    <a href="#" id="page-top" class="text-success font-weight-bold">TOP→</a>
+</button>
+<%# </div>  %>

@@ -49,9 +49,9 @@
                                 <% end %>
                             </div>
                             <%# ユーザーネーム %>
-                            <div class="w-75"><h6 class="card-title h5 pt-2 pl-3 text-left text-light font-weight-bold"><%= tweet.user.user_name %></h6></div>
+                            <div class="w-75 text-left pt-2 pl-3"><%= link_to tweet.user.user_name, user_path(tweet.user) , class: "card-title h5 pt-3 text-left text-light font-weight-bold" %></div>
                             <%# dropdowe-menuがリンクに飛ばされた後、何らかの原因で使用できないので 代換えしている %>
-                            <div class="w-25">
+                            <div class="Po-1">
                                 <details>
                                     <summary  class='fas fa-ellipsis-v h4 pt-1 pr-1 text-white d-block'></summary>
                                     <ul class="mt-2 pt-2 p-0 text-center">
@@ -70,7 +70,7 @@
                     <div class="card-body p-3 overflow-auto">
                         <%# 画像 %>
                         <% if tweet.image? %>
-                            <%= image_tag tweet.image.url, class: "card-img-top mb-3", style: "height:10em" %>
+                            <%= image_tag tweet.image.url, class: "card-img-top mb-3", style: "height:18em" %>
                         <% end %>
                         <%# 投稿内容 %>
                         <p class="card-text"><%= tweet.content %></p>
@@ -120,7 +120,7 @@
                     <div class="card-header bg-success px-6 py-0 text-right">
                         <%# dropdowe-menuがリンクに飛ばされた後、何らかの原因で使用できないので 代換えしている %>
                         <details>
-                            <summary  class='fas fa-ellipsis-v pt-2 text-white'></summary>
+                            <summary  class='fas fa-ellipsis-v h5 pt-2 text-white'></summary>
                                 <ul class="mt-3 p-0 text-center">
                                         <li class="py-1"><%= link_to '詳細', tweet_path(tweet), class: "text-success" %></li>
                                     <%# 編集、削除ボタンの制御 %>
@@ -135,7 +135,7 @@
                     <div class="card-body p-3 overflow-auto">
                         <%# 画像 %>
                         <% if tweet.image? %>
-                            <%= image_tag tweet.image.url, class: "card-img-top mb-3", style: "height:10em" %>
+                            <%= image_tag tweet.image.url, class: "card-img-top mb-3", style: "height:18em" %>
                         <% end %>
                         <%# 投稿内容 %>
                         <p class="card-text"><%= tweet.content %></p>

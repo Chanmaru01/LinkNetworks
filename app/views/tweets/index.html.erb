@@ -8,7 +8,7 @@
           <%= f.submit "検索", class: "btn btn-light btn-md text-success" %>
       <% end %>
     </div>
-  </div>
+</div>
 <%# 画面スクロール 修正できたためコメントアウト %>
 <%# <div class="scroll"> %>
     <div class="row">
@@ -25,12 +25,12 @@
                         <%= image_tag 'default_profile_user_icon.png', class: "rounded-circle bg-light", :size =>'70x65' %>
                     <% end %>
                   </div>
-                  <%# ユーザーネーム %>
-                  <div class="w-75"><h6 class="card-title h5 pt-3 pl-3 text-left text-light font-weight-bold"><%= tweet.user.user_name %></h6></div>
+                  <%# ユーザーネーム 投稿してる他のユーザー詳細にアクセスできる %>
+                  <div class="pl-2 pt-3 text-left"><%= link_to tweet.user.user_name, user_path(tweet.user) , class: "card-title h5 pt-3 text-left text-light font-weight-bold" %></div>
                   <%# dropdowe-menuがリンクに飛ばされた後、何らかの原因で使用できないので 代換えしている %>
-                  <div class="w-25">
+                  <div class="Po">
                     <details>
-                      <summary  class='fas fa-ellipsis-v h4 pt-1 pr-1 text-white d-block'></summary>
+                      <summary  class='fas fa-ellipsis-v h4 pt-1 pr-0 text-white d-block'></summary>
                       <ul class="mt-2 pt-3 p-0 text-center">
                             <li class="h5 py-1 my-0"><%= link_to '詳細', tweet_path(tweet), class: "text-success" %></li>
                           <%# 編集、削除ボタンの制御 %>
