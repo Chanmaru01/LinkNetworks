@@ -1,6 +1,6 @@
 # __LinkNetworks__ 
 ## __アプリケーション概要__
-このアプリは、ご自身の日常や趣味、目標を共有してモチベーションを向上したい人のための投稿アプリです。投稿に対してコメントもできるため相手とのコミュ二ケーションで分からない事も聞くことができます。
+__このアプリは、ご自身の日常や趣味、目標を共有してモチベーションを向上したい人のための投稿アプリです。投稿に対してコメントもできるため相手とのコミュ二ケーションで分からない事も聞くことができます。__
 ## __本番環境__
 ()
 ## __開発環境__
@@ -11,7 +11,7 @@
 - Visual Studio Code
 - Render.com
 ## __制作背景__
-私は、初めてポートフォリオを作成するにあたって私自身がよく使用しているであろうSNSアプリを作ってみたいと思い作成しました！思い立って作成してみると私が思っていた以上に難しく、erroeの壁ばかりでした。躓きながらも頑張って作成したので今後活用されることを願っています。
+__私は、初めてポートフォリオを作成するにあたって私自身がよく使用しているSNSアプリを作ってみたいと思い作成しました！思い立って作成してみると私が思っていた以上に難しく、erroeの壁ばかりでした。躓きながらも頑張って作成したので今後活用されることを願っています。__
 ## __実装機能__
 - ログイン機能
 - 投稿機能
@@ -105,7 +105,22 @@
 - belongs_to :user
 - belongs_to :tweet
 ## __Demonstration__
-
+初めてサイトを訪れた人にアプリの説明をみてもらいます。
+![ホーム](https://user-images.githubusercontent.com/102949610/226195666-94c9aae0-7397-4b25-9006-d8875ce5cb19.png)
+投稿一覧から投稿のいいね、お気に入り  
+![Videotogif](https://user-images.githubusercontent.com/102949610/226197113-0baba40a-9c02-49cc-90f1-504026318aea.gif)  
+投稿の削除  
+![Videotogif (1)](https://user-images.githubusercontent.com/102949610/226197695-a9f692c2-9b2c-43ee-8715-09cc9f4793f2.gif)  
+投稿のみ検索  
+![Videotogif (2)](https://user-images.githubusercontent.com/102949610/226198024-558ee410-c4c5-4e50-a5d3-73b1cda9a424.gif)  
+コメントの返信  
+![Videotogif (3)](https://user-images.githubusercontent.com/102949610/226198353-3c8a17a9-587b-4864-b65e-2b58e852c959.gif)  
+新規投稿  
+![Videotogif (4)](https://user-images.githubusercontent.com/102949610/226198702-ffc69d2a-6ef7-43f5-ae01-35566be1a8a9.gif)  
+Todoリスト  
+![Videotogif (5)](https://user-images.githubusercontent.com/102949610/226198927-0972024e-5ace-4a75-800e-43277d7c9a4d.gif)  
+ユーザープロフィールの閲覧  
+![Videotogif (6)](https://user-images.githubusercontent.com/102949610/226199053-680d506e-4dc0-4dcb-bc6e-6261a9fa6b9d.gif)
 ## __使用技術__
 HTML,CSS,JQuery,Ruby,Rails,Docker,render.com
 ## __課題と今後実装したい機能__
